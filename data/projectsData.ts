@@ -1,8 +1,16 @@
-const projectsData: {
+interface Project {
   title: string
   description: string
   href: string
-}[] = [
+  imgSrc?: string // Opcional (por si acaso usas imágenes)
+  slug?: string // Opcional
+  year?: string // Opcional
+  stack?: string[] // Opcional (lista de strings)
+  bullets?: string[] // Opcional (lista de strings)
+  links?: { label: string; href: string }[] // Opcional (lista de objetos)
+}
+
+const projectsData: Project[] = [
   {
     title: 'Optical Parameter Estimation',
     description:
