@@ -10,8 +10,23 @@ import {
   FaBrain,
   FaCogs,
   FaChartLine,
+  FaDocker,
+  FaLinux,
+  FaDna,
 } from 'react-icons/fa'
-import { SiPytorch, SiCplusplus, SiGurobi } from 'react-icons/si'
+import {
+  SiPytorch,
+  SiCplusplus,
+  SiGurobi,
+  SiFastapi,
+  SiGooglecloud,
+  SiKubernetes,
+  SiLatex,
+  SiScikitlearn,
+  SiHuggingface,
+} from 'react-icons/si'
+import { MdOutlineScience, MdOutlineSchool } from 'react-icons/md'
+import { TbMathFunction, TbGeometry } from 'react-icons/tb'
 
 export const metadata = {
   title: siteMetadata.title,
@@ -23,6 +38,7 @@ export default async function Page() {
     <>
       <AnimatedBackground />
 
+      {/* Hero Section */}
       <div className="relative flex flex-col items-center justify-center overflow-hidden pt-36 pb-12 text-center">
         <div className="group relative mb-8">
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 opacity-50 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200" />
@@ -48,12 +64,12 @@ export default async function Page() {
 
         <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-slate-700 bg-slate-800/40 p-6 shadow-2xl backdrop-blur-sm">
           <p className="text-left text-lg leading-relaxed text-slate-300">
-            Undergraduate Researcher at UAM. Specializing in{' '}
-            <b className="text-white">Stochastic Analysis</b>,{' '}
-            <b className="text-white">Graph Theory</b>, and{' '}
-            <b className="text-white">Advanced Optimization</b>.
+            Researcher at the intersection of <b className="text-white">Geometric Deep Learning</b>,{' '}
+            <b className="text-white">Scientific Computing</b>, and{' '}
+            <b className="text-white">Optimization</b>.
             <br className="mb-2" />
-            Bridging the gap between rigorous mathematical theory and high-performance engineering.
+            I build rigorous mathematical frameworks and robust engineering systems to solve complex
+            problems in biology, physics, and logistics.
           </p>
         </div>
 
@@ -64,24 +80,58 @@ export default async function Page() {
         </div>
       </div>
 
-      <div className="container mx-auto max-w-5xl px-4 py-16">
+      {/* Education Section */}
+      <div className="container mx-auto max-w-5xl px-4 py-12">
+        <div className="mb-10 flex items-center">
+          <div className="mr-4 h-1 w-16 rounded-full bg-gradient-to-r from-green-500 to-emerald-600" />
+          <h2 className="text-3xl font-bold tracking-tight text-white">Education</h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <EducationCard
+            school="Université Gustave Eiffel"
+            location="Paris, France"
+            degree="Exchange Program, M1 Actuarial Science"
+            date="Present"
+            desc="Focus on Advanced Probability, Stochastic Processes, and Risk Theory. Recipient of full International Mobility Scholarship, on UAM Mobility funding."
+          />
+          <EducationCard
+            school="Universidad Autónoma Metropolitana"
+            location="Mexico City"
+            degree="B.S. Applied Mathematics & Computer Science"
+            date="2025"
+            desc="GPA: 9.88/10. Thesis on Curvature-Guided Topology Optimization for GNNs (Highest Honors)."
+          />
+        </div>
+      </div>
+
+      {/* Technical Arsenal Section */}
+      <div className="container mx-auto max-w-5xl px-4 py-12">
         <div className="mb-10 flex items-center">
           <div className="mr-4 h-1 w-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600" />
           <h2 className="text-3xl font-bold tracking-tight text-white">Technical Arsenal</h2>
         </div>
 
         <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
-          <SkillCard icon={<FaPython className="text-yellow-400" />} name="Python / PyMC" />
-          <SkillCard icon={<SiPytorch className="text-orange-500" />} name="PyTorch / Geometric" />
-          <SkillCard icon={<FaRust className="text-orange-600" />} name="Rust / Systems" />
-          <SkillCard icon={<SiCplusplus className="text-blue-500" />} name="C++ / CUDA" />
-          <SkillCard icon={<SiGurobi className="text-red-500" />} name="Gurobi / CPLEX" />
-          <SkillCard icon={<FaChartLine className="text-blue-400" />} name="MATLAB / R" />
-          <SkillCard icon={<FaBrain className="text-purple-400" />} name="Swarm Intelligence" />
-          <SkillCard icon={<FaCogs className="text-slate-400" />} name="PDEs / ODEs" />
+          <SkillCard icon={<FaPython className="text-yellow-400" />} name="Python / SciPy" />
+          <SkillCard
+            icon={<SiPytorch className="text-orange-500" />}
+            name="PyTorch / Geometric"
+          />
+          <SkillCard icon={<SiHuggingface className="text-yellow-400" />} name="LLMs / LoRA" />
+          <SkillCard icon={<TbGeometry className="text-pink-400" />} name="Geometric DL" />
+          <SkillCard icon={<SiGurobi className="text-red-500" />} name="Gurobi / MILP" />
+          <SkillCard icon={<SiFastapi className="text-teal-400" />} name="FastAPI / Async" />
+          <SkillCard icon={<FaDocker className="text-blue-500" />} name="Docker / Kubeflow" />
+          <SkillCard icon={<SiGooglecloud className="text-yellow-500" />} name="Vertex AI / GCP" />
+          <SkillCard icon={<FaLinux className="text-slate-200" />} name="Linux / Bash" />
+          <SkillCard icon={<TbMathFunction className="text-purple-400" />} name="Numerical Opt." />
+          <SkillCard icon={<SiScikitlearn className="text-orange-300" />} name="SciKit-Learn" />
+          <SkillCard icon={<SiLatex className="text-slate-100" />} name="LaTeX / Writing" />
         </div>
       </div>
 
+      {/* Research Experience Section */}
       <div className="container mx-auto max-w-5xl px-4 py-12 pb-24">
         <div className="mb-12 flex items-center">
           <div className="mr-4 h-1 w-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-600" />
@@ -89,25 +139,49 @@ export default async function Page() {
         </div>
 
         <div className="relative ml-4 space-y-16 border-l-2 border-slate-700">
+          
+          {/* LAMA Entry (Nuevo) */}
           <ExperienceItem
-            date="2025"
-            title="Mitacs Global Researcher"
+            date="Present"
+            title="Research Intern (M1 Actuarial Science)"
+            org="Le Laboratoire d’analyse et de mathématiques appliquées (LAMA)"
+            desc="Conducting research in applied mathematics and stochastic modeling as part of the Master 1 Actuarial Science curriculum at Université Gustave Eiffel. Focusing on risk theory and statistical processes."
+          />
+
+          {/* CCG Entry */}
+          <ExperienceItem
+            date="Aug 2024 – Present"
+            title="Undergraduate Researcher"
+            org="Center for Genomic Sciences (CCG · UNAM)"
+            desc="Fine-tuning Foundation Models (LLaMA, GPT-4o) for bacterial TRN curation. Implementing LoRA and 4-bit quantization pipelines to extract regulatory networks from literature. Work accepted for oral presentation at CIBB 2025 (Milan)."
+          />
+
+          <ExperienceItem
+            date="Aug 2024 – Present"
+            title="Undergraduate Thesis Researcher"
+            org="Laboratory of Applied Mathematics & Systems (UAM)"
+            desc="Proposing a discrete-geometric framework using Ollivier-Ricci Curvature to mitigate 'over-squashing' in Graph Neural Networks. Designing stochastic search algorithms to optimize spectral gaps."
+          />
+
+          <ExperienceItem
+            date="Summer 2024"
+            title="Mitacs Globalink Research Scholar"
             org="CIRRELT · Montreal, Canada"
-            desc="Designed a mixed-integer linear model for cold-chain routing optimization. Calibrated with operational data using Pyomo and Gurobi under supervision of Hani Zbib."
+            desc="Formulated a Mixed-Integer Linear Program (MILP) for cold-chain routing optimization. Developed a 'Delta-primary' reformulation to linearize bilinear energy terms, solving large-scale instances."
           />
 
           <ExperienceItem
-            date="2024"
-            title="AI Research Intern"
-            org="El Puerto de Liverpool"
-            desc="Implemented scalable pipelines for Virtual Try-On models. Utilized Markov Chain Monte-Carlo (PyMC) for Bayesian distribution drift monitoring in production environments."
-          />
-
-          <ExperienceItem
-            date="2024"
-            title="Research Assistant"
+            date="Jan 2024 – May 2024"
+            title="Research Fellow (Computational Physics)"
             org="IER · UNAM"
-            desc="Developed hybrid heuristics (Hooke–Jeeves + Simulated Annealing) for optical parameter estimation in semiconductors. Optimized for non-convex landscapes."
+            desc="Solved ill-posed inverse problems to retrieve optical constants using Maxwell-consistent Transfer Matrix Methods. Implemented global-to-local optimization (Simulated Annealing → BFGS) with Tikhonov regularization."
+          />
+
+          <ExperienceItem
+            date="July 2023 – Jan 2024"
+            title="AI Engineer Intern"
+            org="El Puerto de Liverpool"
+            desc="Engineered production-grade Virtual Try-On backends. Optimized tail-latency (p95) for smart mirrors using async GPU pipelines and established MLOps workflows on Vertex AI/Kubeflow."
           />
         </div>
       </div>
@@ -173,8 +247,40 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
 function SkillCard({ icon, name }: { icon: React.ReactNode; name: string }) {
   return (
     <div className="group flex items-center space-x-4 rounded-xl border border-slate-700/50 bg-slate-800/40 p-5 transition-all duration-300 hover:border-cyan-500/50 hover:bg-slate-800 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
-      <div className="text-3xl transition-transform duration-300 group-hover:scale-110">{icon}</div>
+      <div className="text-3xl transition-transform duration-300 group-hover:scale-110">
+        {icon}
+      </div>
       <span className="font-mono text-sm text-slate-300 group-hover:text-white">{name}</span>
+    </div>
+  )
+}
+
+function EducationCard({
+  school,
+  location,
+  degree,
+  date,
+  desc,
+}: {
+  school: string
+  location: string
+  degree: string
+  date: string
+  desc: string
+}) {
+  return (
+    <div className="group rounded-xl border border-slate-700/50 bg-slate-800/20 p-6 transition-all duration-300 hover:border-green-500/30 hover:bg-slate-800/40">
+      <div className="mb-2 flex items-start justify-between">
+        <div>
+          <h3 className="text-xl font-bold text-white group-hover:text-green-400">{school}</h3>
+          <p className="text-sm text-slate-400">{location}</p>
+        </div>
+        <span className="rounded border border-slate-700 bg-slate-900/50 px-2 py-1 font-mono text-xs text-slate-500">
+          {date}
+        </span>
+      </div>
+      <div className="mt-3 font-mono text-sm font-medium text-slate-200">{degree}</div>
+      <p className="mt-2 text-sm leading-relaxed text-slate-400">{desc}</p>
     </div>
   )
 }
