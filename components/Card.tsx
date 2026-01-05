@@ -1,7 +1,15 @@
 import Image from './Image'
 import Link from './Link'
 
-const Card = ({ title, description, imgSrc, href }) => (
+// Agregamos esta interfaz para que TypeScript no se queje
+interface CardProps {
+  title: string
+  description: string
+  imgSrc?: string // El '?' lo hace opcional
+  href?: string // El '?' lo hace opcional
+}
+
+const Card = ({ title, description, imgSrc, href }: CardProps) => (
   <div className="md max-w-[544px] p-4 md:w-1/2">
     <div
       className={`${
