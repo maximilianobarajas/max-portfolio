@@ -91,20 +91,23 @@ export default async function Page() {
         <div className="relative ml-4 space-y-16 border-l-2 border-slate-700">
           <ExperienceItem
             date="2025"
-            org="CIRRELT - Montreal, Canada"
+            title="Mitacs Global Researcher"
+            org="CIRRELT · Montreal, Canada"
             desc="Designed a mixed-integer linear model for cold-chain routing optimization. Calibrated with operational data using Pyomo and Gurobi under supervision of Hani Zbib."
           />
 
           <ExperienceItem
             date="2024"
+            title="AI Research Intern"
             org="El Puerto de Liverpool"
             desc="Implemented scalable pipelines for Virtual Try-On models. Utilized Markov Chain Monte-Carlo (PyMC) for Bayesian distribution drift monitoring in production environments."
           />
 
           <ExperienceItem
             date="2024"
-            org="IER - UNAM"
-            desc="Developed hybrid heuristics (Hooke-Jeeves + Simulated Annealing) for optical parameter estimation in semiconductors. Optimized for non-convex landscapes."
+            title="Research Assistant"
+            org="IER · UNAM"
+            desc="Developed hybrid heuristics (Hooke–Jeeves + Simulated Annealing) for optical parameter estimation in semiconductors. Optimized for non-convex landscapes."
           />
         </div>
       </div>
@@ -178,12 +181,12 @@ function SkillCard({ icon, name }: { icon: React.ReactNode; name: string }) {
 
 function ExperienceItem({
   date,
-  role,
+  title,
   org,
   desc,
 }: {
   date: string
-  role: string
+  title: string
   org: string
   desc: string
 }) {
@@ -193,7 +196,7 @@ function ExperienceItem({
 
       <div className="mb-2 flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
         <h3 className="text-2xl font-bold text-white transition-colors group-hover:text-cyan-300">
-          {role}
+          {title}
         </h3>
         <span className="rounded border border-slate-700 bg-slate-900/50 px-2 py-1 font-mono text-sm text-slate-500">
           {date}
