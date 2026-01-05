@@ -1,0 +1,1124 @@
+\documentclass[12pt,titlepage,twoside,openright]{book}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{color}
+\usepackage[utf8]{inputenc} % Para usar caracteres UTF-8 (acentos españoles)
+\usepackage{pstricks, pst-node}
+\usepackage{graphics,graphicx,graphpap}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsthm} % 
+\usepackage[spanish]{babel} 
+\usepackage{amsthm}         
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}[teorema]{Lema}
+\newtheorem{corolario}[teorema]{Corolario}
+\newtheorem{definición}{Definición}
+\usepackage{float}
+\usepackage{multirow}     % Para \multirow en tablas
+\usepackage{booktabs}     % Para \toprule, \midrule, \bottomrule
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Plantilla elaborada por Alma Rocío Sagaceta Mejía (2010) y modificada por Julián Alberto Fresán Figueroa (2011-2020) %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Aqui se pueden agregar palabras que Latex separa de forma incorrecta al haber saltos de linea. Al escribir fa-mi-lia se le esta indicando que puede separar la palabra solo en los guiones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hyphenation{Colores fa-mi-lia caracte-rizarlos}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              UAM-Logo                   	 %%%
+%%%         Por Ismael Velázquez Ramírez         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\uamlogo}[3][2pt]{
+    \psset{unit=#2,linewidth=#1 }
+    \psline*[linearc=.25,linecolor=#3](2.8,2)(2,2)(1.8,0)(2.8,2)(3.8,0)(3.6,2)(2,2)(1.8,0)
+    \psline*[linecolor=#3](0,0)(.8,0)(1.8,2)(1,2)(0,0)
+    \psline*[linecolor=#3](4.8,0)(3.8,2)(4.6,2)(5.6,0)(4.8,0)
+    \psline*[linearc=.25,linecolor=#3](3.8,0)(2.8,2)(3.6,2)(4.6,0)(3.8,0)
+    \psline*[linearc=.25,linecolor=#3](4.6,0)(3.8,0)(2.8,2)(3.6,2)(4.6,0)
+    \rput{180}(5.6,2){%
+    \psline*[linearc=.25,linecolor=white](2.8,2)(2,2)(1.8,0)(2.8,2)(3.8,0)(3.6,2)(2,2)(1.8,0)
+    \psline*[linearc=.25,linecolor=white](1,0)(1.8,0)(2.8,2)(2,2)(1,0)
+    \psline*[linearc=.25,linecolor=white](1.8,0)(1,0)(2,2)(2.8,2)(1.8,0)
+    \psline*[linearc=.25,linecolor=white](3.8,0)(2.8,2)(3.6,2)(4.6,0)(3.8,0)
+    \psline*[linearc=.25,linecolor=white](4.6,0)(3.8,0)(2.8,2)(3.6,2)(4.6,0)
+    \psline[linearc=.25,linecolor=#3](1,0)(2,2)(3.6,2)(4.6,0)
+    \psline[linecolor=#3](1,0)(1.8,0)
+    \psline[linearc=.25,linecolor=#3](4.6,0)(3.8,0)
+    \psline[linearc=.25,linecolor=#3](1.8,0)(2.8,2)(3.8,0)}
+    \psline*[linearc=.25,linecolor=#3](1,0)(1.8,0)(2.8,2)(2,2)(1,0)
+    \psline*[linearc=.25,linecolor=#3](1.8,0)(1,0)(2,2)(2.8,2)(1.8,0)}
+    
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aqui se definen los entornos en español.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{teo}{Teorema}
+\newtheorem{defi}{Definici\'on}
+\newtheorem{coro}{Corolario}
+
+
+%Ejemplo de uso:
+%\begin{teo}[Teorema de Completitud] 
+%Sea...
+%\end{teo}
+
+
+
+\newcommand{\titulo}[1]{\def\eltitulo{#1}}
+\newcommand{\carrera}[1]{\def\lacarrera{#1}}
+\newcommand{\nombre}[1]{\def\elnombre{#1}}    %* Del alumno
+\newcommand{\director}[1]{\def\eldirector{#1}}  %* De tesis
+\newcommand{\fecha}[1]{\def\lafecha{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Se deben llenar los siguientes datos
+%Estos datos apareceran en la portada y los encabezados
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\titulo{Nombre del Proyecto}
+\nombre{\uppercase{Maximiliano Barajas Sánchez}}
+\carrera{Licenciatura en Matemáticas Aplicadas}
+\director{\uppercase{Edwin Montes Orozco, \\ Abel García Nájera}}
+\fecha{Agosto, 2025}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Portada
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+
+% Pequeño ajuste global (antes era -1.5cm)
+\hspace*{-1.3cm}
+
+\begin{minipage}[c][9cm][s]{4cm}
+  \begin{center}
+
+    % =====================================
+    % LOGO COMO IMAGEN
+    % =====================================
+    \includegraphics[width=3.5cm]{logo_uam.jpg}
+
+    \vspace{0.5cm}
+
+    % Barras verticales de la portada
+    \hskip1pt \vrule width2pt height17cm\hskip1mm
+    \vrule width1pt height17cm\\[10pt]
+
+  \end{center}
+\end{minipage}
+% AQUÍ ES DONDE MANDAMOS LOS TÍTULOS MÁS A LA DERECHA
+\hspace{-0.3cm} % prueba 1.5–2cm según lo quieras
+\begin{minipage}[c][10cm][s]{10cm}
+  \begin{center}
+    % Barra superior
+    {\Large \scshape Universidad Aut\'onoma Metropolitana}
+    \vspace{.3cm}
+    \hrule height2pt
+    \vspace{.1cm}
+    \hrule height1pt
+    \vspace{.3cm}
+    { UNIDAD CUAJIMALPA}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Poner aquí el título del trabajo
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \vspace{2cm}
+    
+    {\Large \textsc{Inteligencia de Enjambre para resolver el embotellamiento en Redes Convolucionales de Grafos}} 
+
+    \vspace{2cm}
+
+    \makebox[8cm][c]{\Large Proyecto Terminal}\\[8pt]
+    
+    \makebox[6cm]{QUE PRESENTA:}\\[3pt]
+    \elnombre\\
+    \vspace{.5cm}
+    {\textsc {\large \lacarrera}}\\[3pt]
+    \makebox[10cm]{Departamento de Matem\'aticas Aplicadas y Sistemas}\\[13pt]
+    \makebox[10cm]{Divisi\'on de Ciencias Naturales e Ingenier\'ia}\\[13pt]
+
+    \vspace{2cm}
+
+    { Asesor y Responsable de la tesis:\\ \eldirector\\}
+
+    \vspace{2cm}
+    \begin{flushright}
+      \lafecha 
+    \end{flushright}
+
+  \end{center}
+\end{minipage}
+
+
+
+
+\pagestyle{plain}
+	
+
+\tableofcontents
+\newpage 
+\listoffigures	
+
+
+
+
+\mainmatter{}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{%
+\markboth{\chaptername
+\ \thechapter.\ #1}{}}
+\fancyhead[RO,LE]{\bfseries \thepage}
+\fancyfoot{}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5ex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aquí se empieza a colocar la información del trabajo
+% El documento deberá contener al menos los  capítulos que aparecen a continuación.
+% Cada capitulo puede tener secciones y subsecciones
+% Las imágenes deben ser incluidas en formato .eps
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Resumen}
+Las Redes Neuronales de Grafos Convolucionales (GCNs) se han consolidado como una de las herramientas más relevantes para el aprendizaje automático en datos no euclidianos. Sin embargo, su desempeño suele verse limitado por fenómenos estructurales inherentes a los grafos de entrada, tales como el \textit{over-smoothing} y el \textit{over-squashing}, los cuales restringen la propagación de información entre nodos distantes y generan cuellos de botella que deterioran la capacidad representacional del modelo. Diversos trabajos han propuesto abordar esta limitación mediante técnicas basadas en curvatura discreta y recableo geométrico; no obstante, estos métodos presentan sensibilidad a hiperparámetros, altos costos computacionales y dificultades para generalizar entre diferentes topologías.
+
+En este proyecto se propone una alternativa basada en algoritmos de \textit{inteligencia de enjambre} para guiar el recableo de grafos con el objetivo de mejorar la precisión de una GCN fija, evitando el ajuste fino de sus hiperparámetros. Se implementaron tres métodos representativos: \textit{Particle Swarm Optimization} (PSO), \textit{Artificial Bee Colony} (ABC) y \textit{Ant Colony System} (ACS). Cada uno trata el recableo como un problema de optimización combinatoria, donde una solución corresponde a un conjunto de aristas seleccionadas o eliminadas, evaluándose su calidad mediante la exactitud obtenida por la GCN sobre el conjunto de prueba. Adicionalmente, se empleó Evolución Diferencial para ajustar automáticamente los hiperparámetros de cada algoritmo.
+
+Los métodos fueron evaluados sobre los datasets clásicos \textsc{Cora}, \textsc{Citeseer} y \textsc{Pubmed}. Los resultados muestran mejoras sustanciales respecto al grafo original sin recableo: PSO, ABC y ACS alcanzan precisiones superiores al 78\,\% en Cora y Pubmed, superando en más de 20 puntos porcentuales a la GCN base. Se observa además que ACS obtiene el mejor desempeño promedio, mientras que PSO ofrece un balance favorable entre calidad y costo computacional. Como análisis complementario, se realizó una visualización de los \textit{embeddings} mediante UMAP, evidenciando una mayor cohesión intra-clase y separación inter-clase después del recableo, lo cual coincide con las mejoras cuantitativas obtenidas.
+
+Los resultados permiten concluir que los métodos de inteligencia de enjambre constituyen una alternativa eficaz, flexible y computacionalmente viable para mejorar el desempeño de las GCNs mediante modificaciones en la topología del grafo, sin depender del ajuste intensivo de hiperparámetros del modelo neuronal. Finalmente, se discuten posibles líneas de trabajo futuro orientadas a recableo dinámico, integración con métodos espectrales y extensión hacia arquitecturas de grafos más profundas.
+
+\chapter{Introducción}
+El análisis de datos estructurados mediante modelos basados en grafos ha adquirido una relevancia creciente en múltiples disciplinas, como biología computacional, redes sociales, sistemas de recomendación y ciberseguridad. En este tipo de aplicaciones, la estructura relacional de los datos desempeña un papel tan importante como las características individuales de cada entidad. Este contexto ha impulsado el desarrollo de técnicas de aprendizaje automático capaces de operar directamente sobre la topología del grafo, dentro de las cuales destacan las Redes Neuronales de Grafos (GNNs).
+
+Las GNNs, se han consolidado como una herramienta central dentro del aprendizaje automático debido a su capacidad para modelar datos con estructura relacional explícita. Entre estas arquitecturas, las Redes de Grafos Convolucionales (GCNs) destacan por su simplicidad computacional y por su efectividad en tareas como la clasificación de nodos, la predicción de enlaces y el análisis de comunidades. No obstante, su rendimiento suele verse limitado por fenómenos estructurales presentes en los grafos de entrada, en particular el \textit{over-smoothing} y el \textit{over-squashing}. Estos efectos reducen la profundidad efectiva de propagación y limitan el flujo de información entre nodos distantes, generando cuellos de botella que deterioran la capacidad de representación del modelo.
+
+Diversas propuestas recientes han recurrido a herramientas de geometría discreta, tales como la curvatura de Ricci o sus aproximaciones estocásticas, para identificar y corregir estos cuellos de botella mediante procesos de recableo. Aunque estos enfoques han mostrado resultados prometedores, también presentan limitaciones inherentes: elevada sensibilidad a hiperparámetros, altos costos computacionales y dificultades para generalizar a grafos con distintas densidades o distribuciones de grado. Esta situación motiva la exploración de métodos alternativos que permitan modificar la estructura del grafo de manera más flexible y orientada directamente al desempeño del modelo.
+
+El presente proyecto propone una aproximación basada en algoritmos de \textit{inteligencia de enjambre} para guiar procesos de recableo en grafos utilizados como entrada para una GCN. En particular, se implementan y comparan tres técnicas representativas: \textit{Particle Swarm Optimization} (PSO), \textit{Artificial Bee Colony} (ABC) y \textit{Ant Colony System} (ACS). Cada una de ellas formula el recableo como un problema de optimización combinatoria, donde cada configuración candidata del grafo se evalúa en función de la precisión alcanzada por una GCN base entrenada bajo parámetros fijos. De esta forma, el recableo se orienta explícitamente a maximizar el desempeño del modelo, evitando la dependencia del ajuste fino de hiperparámetros neuronales o criterios geométricos específicos.
+
+La metodología seguida en este trabajo comprende: (i) la construcción e implementación de una GCN de dos capas con parámetros de entrenamiento constantes; (ii) la definición de una función objetivo basada en la exactitud del modelo sobre los datos de prueba; (iii) la adaptación de PSO, ABC y ACS para seleccionar aristas candidatas a preservar o eliminar; (iv) el uso de Evolución Diferencial para refinar los hiperparámetros de cada algoritmo de enjambre; y (v) la evaluación experimental sobre tres conjuntos de datos ampliamente utilizados: \textit{Cora}, \textit{Citeseer} y \textit{Pubmed}. Asimismo, se analizan los embeddings generados por la GCN antes y después del recableo mediante técnicas de reducción de dimensionalidad, con el objetivo de estudiar la separación entre clases inducida por cada método.
+
+Las principales contribuciones de este proyecto son las siguientes:
+\begin{enumerate}
+    \item Una evaluación comparativa rigurosa de algoritmos de inteligencia de enjambre aplicados al recableo de grafos para GCNs.
+    \item Evidencia empírica de mejoras significativas en el desempeño del modelo sin requerir \textit{hyperparameter tuning} de la arquitectura neuronal.
+    \item Visualizaciones que muestran una mayor cohesión intra-clase y clara separación inter-clase tras el recableo.
+    \item Un análisis de complejidad que permite identificar la escalabilidad relativa de cada técnica propuesta.
+\end{enumerate}
+
+
+%\chapter{Objetivos}
+\section*{Objetivo General}
+Aplicar técnicas de inteligencia de enjambre para fortalecer y optimizar los métodos de recableo en redes neuronales de grafos convolucionales, con el propósito de mejorar su precisión en tareas de clasificación de nodos.
+
+\section*{Objetivos Particulares}
+\begin{itemize}
+    \item Implementar algoritmos de inteligencia de enjambre para optimizar el desempeño de modelos de inteligencia artificial basados en grafos.
+    \item Analizar el impacto de la eliminación de nodos clave en el desempeño de estos modelos.
+    \item Comparar la efectividad de diferentes algoritmos de inteligencia de enjambre en la mejora de la precisión de las redes convolucionales de grafos.
+\end{itemize}
+\section*{Justificación del Problema}
+
+El embotellamiento en redes complejas constituye un fenómeno crítico para el análisis de flujos de información, ya que limita la capacidad de una red para transmitir señales de manera eficiente entre nodos distantes. Este problema se relaciona directamente con fenómenos como el \textit{over-squashing} y el \textit{over-smoothing}, los cuales afectan negativamente el desempeño de las Redes Neuronales de Grafos (GNNs) al comprimir excesivamente la información que se propaga a través de estructuras con alta centralidad o topologías similares a árboles.
+
+En este proyecto, el embotellamiento se aborda como una métrica estructural que permite identificar regiones del grafo donde la transmisión de información se ve restringida. El interés principal es determinar si estas limitaciones estructurales tienen un impacto directo en la precisión de los modelos y, en consecuencia, si pueden ser mitigadas mediante estrategias de recableo.
+
+Bajo esta perspectiva, se propone el uso de algoritmos de inteligencia de enjambre como una alternativa flexible y potente para mejorar el desempeño de métodos de aprendizaje automático geométrico, en particular de los modelos basados en Grafos Convolucionales Neuronales (GCNs). Estos algoritmos permiten explorar configuraciones de recableo que incorporan características estructurales relevantes, tales como la resiliencia, la conectividad local y la eliminación de aristas que inducen cuellos de botella. De esta forma, el recableo no solo modifica la topología del grafo, sino que también mejora la capacidad de la GCN para capturar relaciones significativas y aumentar su precisión en tareas de clasificación.
+
+%Uno o dos párrafos de que se hizo en el proyecto terminal
+Finalmente, este documento se estructura de la siguiente manera: 
+en el Capítulo~\ref{cap2} se revisan los fundamentos teóricos necesarios, incluyendo optimización, redes complejas, curvatura discreta y redes neuronales convolucionales sobre grafos (GCNs). 
+En el Capítulo~\ref{cap5} se describen los algoritmos propuestos para el recableo, así como las instancias de prueba utilizadas en la evaluación experimental. 
+Posteriormente, en el Capítulo~\ref{cap3} se presentan y analizan los resultados obtenidos. 
+Finalmente, en el Capítulo~\ref{cap4} se exponen las conclusiones del trabajo y se discuten posibles líneas de investigación futura.
+
+\chapter{Conocimientos preliminares}
+\label{cap2}
+
+El objetivo de este capítulo es presentar los fundamentos teóricos necesarios para comprender las técnicas, algoritmos y modelos utilizados en el desarrollo de este proyecto. En particular, se abordan conceptos relacionados con la búsqueda y exploración estocástica, la optimización matemática y la optimización combinatoria, elementos que constituyen la base metodológica de los algoritmos de inteligencia de enjambre empleados posteriormente. Este marco teórico permite establecer con claridad cómo se formulan los problemas de optimización, cómo se estructura el espacio de soluciones y cuáles son las estrategias más comunes para explorarlo de forma eficiente.
+
+\section{Búsqueda y Exploración Estocástica}
+
+La búsqueda y exploración estocástica constituye un conjunto de estrategias que emplean mecanismos aleatorios para recorrer el espacio de soluciones de un problema de optimización. A diferencia de los métodos deterministas, que siguen trayectorias fijas o completamente definidas por reglas matemáticas, los métodos estocásticos incorporan elementos probabilísticos que permiten escapar de óptimos locales, diversificar la búsqueda e incrementar la probabilidad de encontrar soluciones de alta calidad en espacios complejos o de gran dimensión.
+
+Estos métodos resultan especialmente útiles cuando el espacio de búsqueda es muy grande, no lineal, multimodal o difícil de modelar mediante técnicas exactas. Bajo esta perspectiva, la estocasticidad no es un obstáculo, sino una herramienta que facilita que los algoritmos exploren regiones del espacio que de otro modo serían inaccesibles con métodos deterministas tradicionales.
+
+En general, la búsqueda y exploración estocástica comprende diversos enfoques, entre los cuales destacan:
+
+\begin{itemize}
+    \item \textbf{Métodos basados en muestreo:} Utilizan probabilidades explícitas para seleccionar nuevas soluciones, como Monte Carlo o métodos Markovianos.
+    \item \textbf{Métodos evolutivos:} Inspirados en la selección natural, como los Algoritmos Genéticos.
+    \item \textbf{Métodos de recocido:} Basados en procesos físicos, como el Enfriamiento Simulado.
+    \item \textbf{Métodos basados en enjambres:} Modelan el comportamiento colectivo de agentes, como PSO, ABC o ACS.
+\end{itemize}
+
+La característica común entre estos enfoques es la incorporación de mecanismos de exploración (buscar nuevas regiones) y explotación (refinar soluciones ya prometedoras). Este equilibrio es clave para el desempeño de los algoritmos de inteligencia de enjambre que se estudiarán más adelante en este documento.
+
+
+\section{Optimización}
+La rama que conocemos como optimización matemática,que también es llamada popularmente programación matemática, la podemos definir como el proceso de tanto buscar como seleccionar la mejor solución de entre un conjunto de alternativas factibles (es decir que cumplan con ciertas cualidades que denotamos de restricciones) que puede ser o no numerable, basándose en criterios específicos.
+
+Los problemás de optimización pueden ser divididos en dos categorías principales de acuerdo a la naturaleza de los valores que pueden tomar las variables de los mismos:
+\begin{itemize}
+  \item Un problema de optimización con variables discretas se conoce como optimización discreta, en el cual se debe encontrar un objeto como un entero, una permutación o un grafo de un conjunto contable.
+  \item Un problema con variables continuas se conoce como optimización continua, en el cual se deben encontrar argumentos óptimos de un conjunto continuo. Estos pueden incluir problemás con restricciones y problemás multimodales.
+\end{itemize}
+
+\begin{definición}[Problema de Optimización]
+Sea \( f : \mathbb{R}^n \to \mathbb{R} \) una función objetivo y sea \( K = \{ x \in \mathbb{R}^n : g_i(x) \le 0,\, i=1,\dots,m,\; h_j(x)=0,\, j=1,\dots,p \} \) el conjunto factible definido por restricciones de desigualdad y de igualdad. El \textbf{problema de optimización} consiste en encontrar un punto \( x^\star \in K \) tal que:
+\[
+x^\star = 
+\begin{cases}
+\arg\min_{x \in K} f(x), & \text{(minimización)}, \\
+\arg\max_{x \in K} f(x), & \text{(maximización)}.
+\end{cases}
+\]
+El conjunto \(K\) define todas las soluciones permitidas, mientras que la función \(f\) determina qué tan buena es cada solución dentro de dicho conjunto.
+\end{definición}
+
+
+\subsection{Optimización Combinatoria}
+
+
+
+
+
+Ahora, antes de continuar, nos vemos en necesidad de definir la optimización combinatoria de manera apropiada, la optimización combinatoria es un campo específico el cual como mencionamos antes busca las soluciones a un problema de optimización dentro de un conjunto finito o infinito según nuestro problema pero obligatoriamente numerable de posibles soluciones o bien:
+
+\begin{definición}
+    Dado un conjunto numerable de soluciones \( S \) al cual llamaremos espacio de búsqueda y una función objetivo \( f: S \rightarrow \mathbb{R} \), el problema de optimización combinatoria es el proceso de buscar el elemento \( s^* \in S \) tal que:
+
+\[
+s^* = \arg\max_{s \in S} f(s) \quad \text{o} \quad s^* = \arg\min_{s \in S} f(s).
+\]
+\end{definición}
+
+\begin{definición}
+    Un problema de optimización combinatoria está definido por una tripleta \( (S, f, \mathcal{F}) \), donde:
+    \begin{itemize}
+        \item \( S \subseteq \mathbb{X} \) es el espacio de búsqueda discreto.
+        \item \( f: S \rightarrow \mathbb{R} \) es la función objetivo a optimizar.
+        \item \( \mathcal{F} \) es un conjunto de restricciones sobre \( S \).
+    \end{itemize}
+    El objetivo siempre será encontrar un valor \( s^* \in S \) que satisfaga las restricciones de \( \mathcal{F} \) y que maximice (o minimice) \( f(s^*) \).
+\end{definición}
+
+\subsubsection{Ejemplos Clásicos}
+
+\begin{itemize}
+    \item \textbf{Problema del Viajante de Comercio (TSP):} Quizás el problema de optimización combinatoria más conocido, se centra partiendo de un conjunto de \( n \) ciudades y una matriz de distancias \( D \in \mathbb{R}^{n \times n} \), que representan un grafo con pesos, en este problema el objetivo es encontrar una permutación de ciudades \( \sigma \) de \(\{1, 2, \ldots, n\}\) que minimice el costo total de recorrer todas las ciudades visitándolas una sola vez o formalmente:
+
+    \[
+    \min \text{C}(\sigma) = \sum_{i=1}^{n-1} D_{\sigma(i), \sigma(i+1)} + D_{\sigma(n), \sigma(1)}.
+    \]
+
+    \item \textbf{Problema de la Mochila (Knapsack Problem):} Otro problema de optimización combinatoria muy estudiado en el cual partimos de un conjunto de \( m \) objetos, cada uno debe tener un peso al que denotamos como \( w_i \) y un valor \( v_i \), nuestro objetivo es que dada una capacidad \( W \), debemos encontrar el subconjunto de objetos que maximicen el valor pero no sobrepasen la capacidad \( W \). Formalmente, encontrar un vector binario \( x \in \{0,1\}^m \) que maximice:
+
+    \[
+    \text{V}(x) = \sum_{i=1}^m v_i x_i,
+    \]
+
+    sujeto a:
+
+    \[
+    \sum_{i=1}^m w_i x_i \leq W.
+    \]
+\end{itemize}
+
+\subsubsection{Métodos de Solución}
+
+\begin{itemize}
+    \item \textbf{Algoritmos Exactos:} Este tipo de métodos son capaces de garantizar que la solución encontrada es el óptimo de nuestro problema, algunos ejemplos son:
+    \begin{itemize}
+        \item \textbf{Programación Dinámica:} Consiste en separar el problema en problemás más pequeños, es una estrategia relativamente reciente.
+    \end{itemize}
+    \item \textbf{Metaheurísticas:} Métodos que guían la búsqueda hacia la solución óptima global mediante estrategias específicas que pueden basarse en procesos de la naturaleza o fenómenos físicos
+    \begin{itemize}
+        \item \textbf{Algoritmos Genéticos:} Simulan el proceso de evolución natural para encontrar soluciones.
+        \item \textbf{Enfriamiento Simulado (Simulated Annealing):} Explora el espacio de soluciones mediante una estrategia de enfriamiento controlado.
+        \item \textbf{Optimización por Enjambre:} Modela el comportamiento de enjambres para buscar soluciones óptimás, estos incluyen enjambres de especies de animales bajo las cuales se propone un modelo matemático según su comportamiento.
+    \end{itemize}
+\end{itemize}
+
+
+\section{Redes Complejas}
+
+El estudio de las redes complejas ha adquirido una importancia central en múltiples disciplinas científicas, debido a su capacidad para modelar sistemas reales cuya estructura no puede describirse adecuadamente mediante grafos simples o regulares. Los fenómenos sociales, biológicos, tecnológicos y de información presentan interacciones heterogéneas, distribuciones de grado no uniformes y patrones de conectividad que emergen de manera no trivial. En este contexto, las redes complejas ofrecen un marco formal para analizar la topología, la dinámica y las propiedades estructurales que determinan el comportamiento global del sistema.
+
+Dentro del aprendizaje automático geométrico, el análisis de redes complejas resulta especialmente relevante, ya que la arquitectura y el desempeño de las Redes Neuronales de Grafos (GNNs) dependen directamente de la estructura del grafo subyacente. Algunas propiedades como centralidad, modularidad, presencia de cuellos de botella, ciclos locales o comunidades influyen en la propagación de información y pueden afectar de manera significativa la precisión de modelos como las Redes de Grafos Convolucionales (GCNs). Por ello, comprender las métricas estructurales fundamentales y la forma en que caracterizan la geometría del grafo es un paso indispensable antes de aplicar técnicas de optimización o recableo.
+
+En esta sección se presentan las definiciones formales y métricas estructurales esenciales para el análisis topológico de redes complejas. Estas nociones servirán como base conceptual para entender la motivación y el funcionamiento de las técnicas de recableo basadas en curvaturas discretas y, más adelante, para evaluar cómo los algoritmos de inteligencia de enjambre pueden aprovechar esta información estructural para mejorar el desempeño de modelos de aprendizaje en grafos.
+
+\begin{definición}[Red Compleja]
+Una \textbf{red compleja} es una estructura de datos que generaliza el concepto de grafo para modelar sistemás en los cuales los nodos (o vértices) están conectados por enlaces (o aristas) que pueden tener propiedades adicionales como pesos, direccionalidad o capacidades. Formalmente, una red compleja puede ser representada por un grafo ponderado \( G = (V, E, w) \), donde \( w: E \to \mathbb{R}^+ \) es una función de peso que asigna un valor positivo a cada arista.
+\end{definición}
+\begin{quote}
+\textbf{Ejemplo.} 
+Los sistemas de transporte, como las redes de carreteras o ferrocarriles, pueden ser modelados como redes complejas, donde los vértices representan ciudades y las aristas representan distancias o tiempos de viaje. Otro ejemplo es el \textbf{internet}, donde los vértices son nodos de red y las aristas representan conexiones de datos con distintos anchos de banda.
+\end{quote}
+
+\section{Métricas Estructurales}
+
+\begin{definición}[Diámetro]
+El \textbf{diámetro} de un grafo \( G = (V, E) \) es la máxima distancia entre cualesquiera dos vértices en \( G \). Formalmente, si \( d(u, v) \) denota la distancia entre los vértices \( u \) y \( v \), el diámetro se define como:
+\[
+\text{diam}(G) = \max_{u, v \in V} d(u, v).
+\]
+\end{definición}
+
+\begin{definición}[Número de Corte de Vértices]
+El \textbf{número de corte de vértices} (o \textbf{corte mínimo de vértices}) en un grafo \( G \) es el tamaño del conjunto más pequeño de vértices cuyo retiro desconecta el grafo:
+\[
+\text{min-cut}(G) = \min \{|S| \mid S \subseteq V \text{ y } G - S \text{ no es conexo} \}.
+\]
+\end{definición}
+
+\begin{definición}[Número de Independencia]
+El \textbf{número de independencia} de un grafo \( G = (V, E) \) es el tamaño del conjunto máximo de vértices de \( G \) tal que ningún par de vértices en este conjunto está conectado por una arista. Se denota como \( \alpha(G) \).
+\end{definición}
+
+\begin{definición}[Grado]
+El \textbf{grado} de un vértice \( v \in V \) en un grafo no dirigido es el número de aristas incidentes a \( v \). En un grafo dirigido, distinguimos entre el grado de entrada y el grado de salida.
+\end{definición}
+
+\begin{definición}[Número de Aristas]
+El \textbf{número de aristas} en un grafo \( G \) es el cardinal del conjunto de aristas \( E \). Se denota como \( |E| \).
+\end{definición}
+
+
+
+
+
+
+\section{Curvaturas discretas}
+
+En esta sección se investiga el uso de analogías discretas de nociones geométricas clásicas de curvatura para modelar el flujo de información en redes y mejorar el entrenamiento de Redes Neuronales de Grafos (GNNs). En particular, se explora un procedimiento de reconexión de grafos basado en el \textbf{Flujo de Ricci Discreto Estocástico (SDRF)}, cuyo propósito es mitigar el problema de \textit{information over-squashing}, una limitación en la propagación eficiente de información entre nodos distantes en una red.
+
+\subsection{Motivación y Contexto}
+
+La motivación subyacente del estudio radica en el fenómeno de \textit{information over-squashing}, donde la información propagada a través de una red se comprime excesivamente, particularmente en nodos con alta centralidad o en estructuras tipo árbol. Este problema afecta significativamente la precisión del entrenamiento de las GNNs, ya que limita la capacidad de capturar relaciones de largo alcance entre nodos. Para abordar esta limitación, el artículo propone el uso de curvaturas discretas para identificar y mitigar estos cuellos de botella en la estructura de la red.
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{over_squashing.png}
+    \caption{Un cuello de botella puede ser fácilmente localizable una vez conocemos una manera de cuantificar la curvatura de un grafo a modo de que podemos recablear el grafo en las regiones cercanas como lo propone \cite{Topping2021}}
+    \label{fig:over_squashing}
+\end{figure}
+
+\subsection{Curvaturas Discretas: Definiciones y Propiedades}
+
+Las curvaturas discretas se utilizan para cuantificar la desviación local de un grafo respecto a una geometría euclidiana ideal. Estas nociones permiten modelar la estructura y el comportamiento de las redes de una manera que refleja mejor las propiedades geométricas subyacentes de los datos. A continuación, se describen las principales definiciones de curvatura discreta utilizadas en este estudio:
+
+\paragraph{1. Curvatura de Forman 1D}
+
+La \textbf{Curvatura de Forman 1D} se define como:
+\begin{equation}
+F(e) = 4 - (\text{deg}(v_1) + \text{deg}(v_2)),
+\end{equation}
+donde $e$ es una arista en el grafo, y $v_1$, $v_2$ son los nodos extremos de $e$. Esta métrica mide la curvatura en función de los grados de los nodos conectados por la arista. La simplicidad de esta curvatura facilita su cálculo, siendo computacionalmente eficiente, pero puede carecer de precisión en la identificación de estructuras más complejas como componentes de tipo clique.
+
+\paragraph{2. Curvatura de Forman Aumentada (2D)}
+
+Para superar las limitaciones de la Curvatura de Forman 1D, se introduce la \textbf{Curvatura de Forman Aumentada (2D)}. Esta métrica toma en cuenta los ciclos de tres (triángulos) presentes en el grafo, proporcionando una representación más rica de la geometría local. Su fórmula es:
+\begin{equation}
+F^{\#}(e) = F(e) + 3t,
+\end{equation}
+donde $t$ representa el número de triángulos que contienen la arista $e$. Esta extensión permite una mejor caracterización de regiones densamente conectadas, donde la simple métrica de grados podría ser insuficiente.
+
+\paragraph{3. Curvatura de Haantjes}
+
+La \textbf{Curvatura de Haantjes} se define de manera aún más sencilla que las curvaturas de Forman. Específicamente, es una métrica que simplemente cuenta el número de triángulos que contienen la arista $e$:
+\begin{equation}
+\kappa_H^2(e) = t.
+\end{equation}
+Esta curvatura es particularmente útil para destacar las regiones del grafo que se asemejan a cliques, ya que asigna un valor alto de curvatura a aristas contenidos en muchos triángulos. Sin embargo, debido a su simplicidad, puede no capturar adecuadamente la variabilidad de estructuras menos densas.
+
+\paragraph{4. Curvatura de Forman Balanceada (BFC)}
+
+La \textbf{Curvatura de Forman Balanceada (BFC)} es una propuesta reciente desarrollada específicamente para abordar el problema de \textit{information over-squashing} en GNNs. Esta curvatura considera contribuciones de aristas "sueltas", ciclos de tres y cuatro. Su expresión matemática es:
+\begin{equation}
+BFC(e) = \frac{2}{d_1} + \frac{2}{d_2} - 2 + \frac{2t}{\max(d_1, d_2)} + \frac{t}{\min(d_1, d_2)} + \frac{\gamma_{\text{max}}^{-1}}{\max(d_1, d_2)}(s(v_1) + s(v_2)),
+\end{equation}
+donde:
+\begin{itemize}
+    \item $d_i$ es el grado del nodo $v_i$.
+    \item $t$ es el número de triángulos que contienen $e$.
+    \item $s(v_i)$ mide cuántos vecinos de $v_1$ forman ciclos de cuatro (cuadrados) con $e$ que no contienen diagonales.
+    \item $\gamma_{\text{max}}$ es el máximo número de ciclos de cuatro que contienen $e$ atravesando un nodo común.
+\end{itemize}
+Esta curvatura busca un equilibrio entre la simplicidad computacional y la riqueza informativa estructural, haciendo que sea adecuada para aplicaciones prácticas en el contexto de GNNs.
+
+
+\section{Redes de Grafos Convolucionales (GCNs)}
+\label{sec:gcn_def}
+Las Redes de Grafos Convolucionales han sido de gran estudio en las ramás del aprendizaje automático como la teoría de grafos en particular \cite{Maxime2025graph} establece que son el tipo de Grafos Neuronales mayormente utilizados en la actualidad, ahí radica nuestro interés en plantear el estudio de los mismos.
+
+\subsection{¿Qué es una GCN?}
+Podemos definir a las GCNs como modelo capaz de capturar información relacional en datos estructurados como grafos, en particular en el desarrollo de este trabajo nos hemos centrado en la definición propuesta por \cite{kipf2017semi}, a grandes rasgos las instancias mayormente reconocidas de Grafos Convolucionales Neuronales tienen una estructura semi universal salvo algunas excepciones, el objetivo de estos modelos es ``aprender'' lo que conocemos como ``señales'' o ``características'' de un grafo que denotaremos como $G= (V,E)$ como definimos en la introducción de este trabajo, este grafo toma como entradas los siguientes objetos:
+
+\begin{itemize}
+    \item Una ``descripción'' $x_i$ para cada uno de los nodos $i$ la cual es una matriz $X$ de $N \times D $ donde $N$ es el número de nodos y $D$ la cantidad de caracteríticas de los nodos.
+    \item Una representación del grafo $A$ la cual es por medio de una matriz de adyacencia.
+\end{itemize}
+
+Y como salida lo que tenemos es una matriz por nodo $Z$ de $N \times F$ donde $F$ es el número de características de salida por nodo, naturalmente realizamos dicho proceso por una cantidad $n$ de capas hasta reducir la salida a una salida que esperamos, en nuestro caso analizaremos el problema de clasificación de nodos, para dicho problema ese proceso se realiza al final evaluando la función \textbf{Softmax} 
+Cada una de las capas que describimos arriba se puede escribir como una función no lineal de la siguiente manera:
+
+$$ H^{(l+1)} = f(H^{(l)},A)$$
+
+Sujeto a las condiciones $H^{(0)}=X$ y $H^{(l)}=Z$ donde $l$ es el número de capa en la que nos encontramos, con esto en mente podemos notar que recibimos inspiración de las Redes Neuronales Convolucionales tradicionales en el siguiente sentido según \cite{rosser2025} en el caso convencional según la visión computacional nos encargamos de procesar la información a través de kernels definidos que nos permiten localizar vecindades de pixeles y lanzar una salida tal como en el diagrama a continuación (Figura \ref{fig:cnn_basic}):
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrama_cnn.png}
+    \caption{Diagrama de una red convolucional tradicional (CNN), basado en \cite{rosser2025}.}
+    \label{fig:cnn_basic}
+\end{figure}
+
+%En este capítulo se incluirán las conclusiones y posibles líneas de trabajo que podrían surgir a partir de este proyecto
+
+Ahora bien para el caso de las GCNs tomamos un acercamiento similar como lo describimos antes. Sin embargo, en lugar de procesar pixeles de un vecindario nos fijamos en las vecindades de cada nodo como se muestra en la  Figura \ref{fig:gcn_basic}, eso es lo que hace una capa de GCN. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{gcn_vec.png}
+    \caption{Propagación de información en una capa GCN, basado en \cite{rosser2025}.}
+    \label{fig:gcn_basic}
+\end{figure}
+
+
+
+Sin embargo recordemos que antes mencionamos la siguiente propuesta de salida de una GCN $H^{(l+1)} = f(H^{(l)},A)$, ahora bien un acercamiento inicial de como definir esta función $f$ completamente razonable es el siguiente:
+
+$$f(H{^{(l)}},A)= \sigma(AH^{(l)}W^{(l)})$$
+Donde $W^{(l)}$ representa una matriz de pesos y $\sigma$ es una función de activación no lineal dentro de las usuales que podemos utilizar para lo que queremos modelar, esta propuesta es razonable dada la inspiración en las redes neuronales usuales dado que tenemos un vector de pesos y lo que es nuestra representación vectorial de las características de cada nodo con el añadido de la matriz de adyacencia. Sin embargo, se hacen presentes algunas limitaciones; en primera instancia, cuando multiplicamos por $A$ al evaluar el producto consideramos el peso de todos los nodos vecinos a un nodo, a excepción del propio nodo, a menos que se trate de una matriz de adyacencia de una gráfica que tenga aristas que conecten nodos iguales. Este pequeño detalle lo podemos solucionar sumando la matriz identidad a $A$. Además de eso, hay un problema mucho más sustancial y es que dependemos completamente de la escala de los vectores de características de la matriz $X$ en la primera iteración, lo que resulta en una incompatibilidad de escalas que no podemos ignorar, así que lo que se propone es utilizar una normalización para la matriz $\hat{A} = A+I$. En particular, la normalización que se recomienda es una normalización simétrica por \cite{kipf2017semi}, entonces nuestra función que representa cada capa resultará en:
+
+$$f(H^{(l)}, A) = \sigma(\hat{D}^{-\frac{1}{2}} \hat{A} \hat{D}^{-\frac{1}{2}} H^{(l)}W^{(l)}$$
+Donde la matriz $\hat{D}$ es la matriz diagonal de $\hat{A}$.
+
+Naturalmente podemos preguntarnos como podemos evaluar el modelo sobre nodos nuevos que podemos agregar y lo que hacemos es evaluar sobre la siguiente función, imaginemos $x$ un vector de características de un nodo sobre el cual queremos evaluar las capas del modelo, entonces obtendremos un vector de coeficientes el cual definimos como la propagación:
+
+$$h_{v_i}^{(l+1)} = \sigma{\sum_{j}\frac{1}{c_{ij}}} h_{v_j}^{(l)} W ^{(l)}$$
+
+Esta notación puede verse un poco compleja pero a continuación describo lo que representa cada elemento:
+
+
+\begin{itemize}
+    \item $h_{v_i}^{(l+1)}$ Representa la función del nodo nuevo en la capa $l+1$
+    \item $\frac{1}{c_{ij}}h_{v_j}^{(l)} W ^{(l)}$ Representa el coeficiente de normalización de la arista $(v_i, v_j)$ que no es más que  $\sqrt{d_id_j}$ donde esos son los valores de las diagonales de la matriz diagonal dada la normalización que hemos propuesto  y $W^(l)$         no es más que el vector de costos, nota aquí se suma sobre $j$ que representa el indice de los vecinos de $v_i$ 
+    \item $h_{v_j}$ no es más que la función evaluada en la capa anterior sobre los vecinos de $v_i$
+    \item  $\sigma$ es la función de activación no lineal.
+\end{itemize}
+
+Hemos finalizado la descripción de las GCNs y del mecanismo de propagación que define la forma en que la información fluye a lo largo del grafo. Es importante remarcar que los pesos de cada capa se ajustan mediante la minimización de una función de pérdida adecuada al problema, que en el caso de clasificación de nodos corresponde típicamente a la entropía cruzada. Asimismo, para el proceso de optimización es común emplear el optimizador Adam, debido a su estabilidad, eficiencia y capacidad de adaptarse a gradientes ruidosos, lo cual resulta especialmente relevante en modelos basados en grafos.
+
+La normalización simétrica de la matriz $\hat{A}$ cumple un papel fundamental: evita la amplificación descontrolada de las señales provenientes de nodos con grado alto y garantiza que la agregación de información sea comparable a lo largo de distintas regiones del grafo. Esta característica es particularmente importante en tareas donde la topología subyacente presenta alta heterogeneidad, como ocurre en la mayoría de las redes complejas reales.
+
+Finalmente, los modelos derivados de \cite{kipf2017semi} han mostrado ser altamente competitivos en diversos benchmarks, lo que ha motivado su adopción como arquitectura base en múltiples trabajos relacionados con aprendizaje geométrico. En este proyecto, la GCN definida en esta sección constituye el modelo central sobre el cual se aplicarán posteriormente las técnicas de recableo guiadas por algoritmos de inteligencia de enjambre. La manipulación estructural del grafo, respaldada por las nociones geométricas introducidas previamente, permitirá evaluar de manera sistemática cómo la topología impacta la capacidad de representación del modelo y su desempeño final.
+
+\chapter{Materiales y métodos}
+\label{cap5}
+El objetivo de este capítulo es describir de forma clara y sistemática los recursos experimentales utilizados en este proyecto incluyendo datasets, software, hardware y la arquitectura base del modelo así como los métodos propuestos para resolver el problema de recableo en redes convolucionales de grafos. 
+
+En la Sección \ref{mat} se presentan las características de los conjuntos de datos utilizados, los parámetros de la arquitectura base de GCN empleada en todos los experimentos, las herramientas de software y el entorno computacional. Posteriormente, en la Sección \ref{met}, se formalizan los algoritmos de inteligencia de enjambre utilizados (ACS, PSO y ABC), así como la técnica adicional de Evolución Diferencial implementada para la optimización de hiperparámetros.
+
+\section{Materiales}
+\label{mat}
+En esta sección se describen los recursos utilizados para llevar a cabo los experimentos del proyecto, incluyendo los conjuntos de datos, la arquitectura utilizada como modelo base, las herramientas de software empleadas y el entorno computacional donde se ejecutaron los algoritmos.
+
+\subsection{Conjuntos de Datos}
+
+Para evaluar los métodos de recableo propuestos se utilizaron tres datasets estándar en el estudio de aprendizaje automático en grafos. Todos ellos forman parte de la familia \textit{Planetoid} y son ampliamente utilizados en benchmarks de GCNs:
+
+\begin{itemize}
+    \item \textbf{Cora}: Grafo bibliográfico con 2708 nodos, 5429 aristas y 7 clases.
+    \item \textbf{Citeseer}: Contiene 3327 nodos, 4732 aristas y 6 clases.
+    \item \textbf{Pubmed}: Grafo con 19,717 nodos, 44,338 aristas y 3 clases.
+\end{itemize}
+
+Estos conjuntos presentan estructuras heterogéneas y diferentes niveles de conectividad, lo que permite evaluar el desempeño de los métodos propuestos bajo distintos escenarios topológicos.
+
+\subsection{Arquitectura Base de la GCN}
+
+Para garantizar que las comparaciones entre métodos fueran consistentes, se utilizó una arquitectura fija de GCN en todos los experimentos. La configuración se resume en la Tabla~\ref{tab:gcn_training_params}. Esta GCN incluye:
+
+\begin{itemize}
+    \item Dos capas convolucionales basadas en GCNConv.
+    \item Dimensión oculta fija de 16.
+    \item Función de activación ReLU.
+    \item Entrenamiento mediante optimizador Adam.
+    \item Función de pérdida de entropía cruzada.
+\end{itemize}
+
+Esta arquitectura fue mantenida constante antes de aplicar cualquier técnica de recableo, siguiendo las recomendaciones de \cite{tori2024} para evitar atribuir la mejora de desempeño a un \textit{hyperparameter tuning} indebido en lugar del método de recableo.
+
+\subsection{Software y bibliotecas}
+
+Los experimentos se implementaron en lenguaje Python utilizando las siguientes bibliotecas:
+
+\begin{itemize}
+    \item \textbf{PyTorch} (v1.x) y \textbf{PyTorch Geometric} (v2.x) para la implementación del modelo GCN.
+    \item \textbf{NumPy} y \textbf{SciPy} para operaciones matemáticas de bajo nivel.
+    \item \textbf{scikit-learn} para la implementación de Evolución Diferencial.
+    \item \textbf{NetworkX} para manipulación estructural de grafos.
+    \item \textbf{Matplotlib} y \textbf{UMAP-learn} para la visualización de embeddings.
+\end{itemize}
+
+La elección de estas bibliotecas. garantiza reproducibilidad y desempeño adecuado para entrenar modelos GCN y ejecutar métodos de inteligencia de enjambre.
+
+\section{Métodos}
+\label{met}
+
+En esta sección se describen los métodos de recableo propuestos para modificar la estructura de los grafos utilizados como entrada de una Red de Grafos Convolucionales (GCN). El propósito central es identificar configuraciones alternativas del grafo que permitan mejorar la propagación de información y, con ello, la precisión del modelo en tareas de clasificación de nodos.
+
+Cada método se formula como un procedimiento de optimización en el cual la estructura del grafo es tratada como una solución candidata dentro de un espacio de búsqueda discreto. La calidad de cada solución se evalúa mediante la precisión obtenida por una GCN de dos capas, entrenada bajo condiciones controladas y con los mismos hiperparámetros para todos los experimentos. De esta manera, cualquier mejora observada en el desempeño puede atribuirse directamente al recableo y no al ajuste de la arquitectura.
+
+El problema de optimización asociado se define como sigue. Sea $G_{\text{rec}}$ un grafo recableado y sea $z(x_i, G_{\text{rec}})$ una variable indicadora que toma el valor de $1$ si la predicción de la GCN para el nodo $x_i$ es correcta y $0$ en caso contrario. La función objetivo consiste en minimizar la tasa de error sobre el conjunto de prueba:
+
+\[
+F(G_{\text{rec}}) = \frac{1}{n}\sum_{i=1}^{n} z(x_i, G_{\text{rec}}),
+\]
+
+lo cual equivale a maximizar la precisión del modelo. Bajo esta formulación, los algoritmos de inteligencia de enjambre —ACS, PSO y ABC— exploran el espacio de grafos posibles, proponiendo modificaciones estructurales (eliminación o preservación de aristas) de acuerdo con sus mecanismos internos de aprendizaje colectivo.
+
+En las subsecciones siguientes se describen cada uno de los métodos utilizados, su adaptación al contexto de recableo y el pseudocódigo correspondiente.
+
+
+\subsection{Algoritmo de Colonia de Hormigas}
+
+El \textbf{Algoritmo de Colonia de Hormigas} (ACS por sus siglas en inglés) es uno de los enfoques más eficaces para resolver problemas de optimización discreta asociados a estructuras de grafos. Su fortaleza radica en la capacidad de combinar mecanismos de exploración probabilística con un proceso de reforzamiento colectivo basado en feromonas, lo cual permite dirigir la búsqueda hacia regiones prometedoras del espacio de soluciones.
+
+En el contexto del presente trabajo, el ACS se adapta para seleccionar subconjuntos de aristas que definan un grafo recableado, cuyo desempeño se evalúa mediante la precisión alcanzada por la GCN base. Cada hormiga construye una propuesta de grafo siguiendo reglas de transición dependientes del nivel actual de feromonas; posteriormente, la calidad de cada solución refuerza o debilita el rastro de feromonas, modulando la probabilidad de exploración en iteraciones posteriores.
+\begin{algorithm}[H]
+\caption{Selección de aristas mediante Ant Colony System (ACS) para recableo en GCN}
+\small
+\begin{algorithmic}[1]
+
+\State \textbf{Inicio}
+\State dataset $\gets$ Cargar conjunto de datos (Cora, Citeseer, Pubmed)
+\State data $\gets$ Obtener el primer grafo del dataset
+
+\State \textbf{Definir modelo GCN:}
+\State Crear GCN de dos capas con activación ReLU y optimizador Adam
+
+\State \textbf{Función de entrenamiento y evaluación:}
+\State Entrenar el modelo con pérdida cross\_entropy
+\State Evaluar precisión en el conjunto de prueba
+
+\State \textbf{Inicialización de ACS:}
+\State Inicializar feromonas $\tau_e \gets 1$ para todas las aristas $e$
+\State mejor\_precisión $\gets 0$
+\State mejor\_grafo $\gets$ data
+
+\For{cada iteración $t = 1 \ldots T$}
+    \For{cada hormiga $k = 1 \ldots n_{\text{h}}$}
+        \State Seleccionar aristas usando regla pseudo-aleatoria proporcional a $\tau_e^\alpha \eta_e^\beta$
+        \State Construir grafo candidato $G_k$
+        \State Entrenar GCN sobre $G_k$ y obtener precisión $p_k$
+        \If{$p_k >$ mejor\_precisión}
+            \State mejor\_precisión $\gets p_k$
+            \State mejor\_grafo $\gets G_k$
+        \EndIf
+        \State \textbf{Actualización local:}  
+        \State $\tau_e \gets (1 - \rho)\,\tau_e + \rho\,\tau_0 \quad \forall e \in G_k$
+    \EndFor
+
+    \State \textbf{Actualización global:}
+    \State $\tau_e \gets (1 - \rho)\,\tau_e + \alpha \cdot \text{mejor\_precisión} \quad \forall e \in \text{mejor\_grafo}$
+\EndFor
+
+\State \textbf{Salida:} mejor\_grafo, mejor\_precisión
+
+\State \textbf{Fin}
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Algoritmo de Enjambre de Partículas Discreto}
+
+El \textbf{Algoritmo de Enjambre de Partículas} (PSO) es una metaheurística clásica inspirada en el comportamiento colectivo de bandadas y cardúmenes. A diferencia de otros métodos más complejos de inteligencia de enjambre, PSO destaca por su simplicidad computacional y por su capacidad para explorar el espacio de soluciones mediante la interacción entre componentes inerciales, cognitivas y sociales.
+
+En este trabajo se emplea una \textbf{versión discretizada del PSO} con el fin de evaluar qué tan competitiva puede ser esta técnica frente a métodos más robustos como ACS o ABC en el problema de recableo de grafos. La discretización es necesaria porque la selección de aristas es un proceso inherentemente combinatorio: cada solución representa un subconjunto de aristas que define un grafo candidato sobre el cual se evalúa la precisión de la GCN base.
+
+La formulación adoptada permite que cada partícula codifique un vector binario asociado a la presencia o ausencia de aristas, mientras que la actualización de velocidades se transforma en una probabilidad sigmoidal que regula los cambios estructurales. Este diseño permite mantener la filosofía original del PSO, pero adaptada a un espacio discreto. A continuación se describe el pseudocódigo correspondiente.
+\begin{algorithm}[H]
+\caption{Optimización de aristas mediante PSO para recableo en GCN}
+\small
+\begin{algorithmic}[1]
+
+\State \textbf{Inicio}
+
+\State Cargar dataset (Cora, Citeseer, Pubmed)
+\State data $\gets$ Obtener el grafo base
+\State Definir modelo GCN de dos capas y optimizador Adam
+
+\State \textbf{Función de entrenamiento:}
+\State Entrenar GCN en un grafo dado y devolver precisión en el conjunto de prueba
+
+\State \textbf{Inicialización de PSO:}
+\State Inicializar posiciones $x_i$ (selección binaria de aristas) para cada partícula $i$
+\State Inicializar velocidades $v_i$ aleatorias
+\State Inicializar mejores personales $p_i \gets x_i$
+\State Evaluar precisión de cada partícula y fijar mejor global $g$
+
+\For{cada iteración $t = 1 \ldots T$}
+    \For{cada partícula $i$}
+        \State Construir grafo $G_i$ según la posición $x_i$
+        \State Evaluar precisión $f_i$ del GCN sobre $G_i$
+
+        \If{$f_i > f(p_i)$}
+            \State $p_i \gets x_i$
+        \EndIf
+
+        \If{$f_i > f(g)$}
+            \State $g \gets x_i$
+        \EndIf
+
+        \State \textbf{Actualizar velocidad:}
+        \State $v_i \gets \omega v_i + c_1 r_1 (p_i - x_i) + c_2 r_2 (g - x_i)$
+
+        \State \textbf{Actualizar posición con regla sigmoidal:}
+        \State $s_i \gets \sigma(v_i)$ \Comment{$\sigma(z) = \frac{1}{1+e^{-z}}$}
+        \State $x_i^{(j)} \gets 
+            \begin{cases}
+               1 & \text{si } U(0,1) < s_i^{(j)} \\
+               0 & \text{en otro caso}
+            \end{cases}$ para cada arista $j$
+
+    \EndFor
+\EndFor
+
+\State \textbf{Salida:} mejor conjunto de aristas $g$ y su precisión asociada
+
+\State \textbf{Fin}
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Algoritmo de Colonia de Abejas Artificiales}
+
+El \textbf{Algoritmo de Colonia de Abejas Artificiales} (ABC) es una metaheurística inspirada en el comportamiento cooperativo de las abejas melíferas durante la búsqueda y explotación de fuentes de alimento. A diferencia del PSO, el ABC incorpora explícitamente mecanismos de exploración y explotación diferenciados mediante tres tipos de agentes: abejas empleadas, abejas observadoras y abejas exploradoras. Esto convierte al ABC en un método más robusto para evitar óptimos locales y mantener diversidad en el espacio de soluciones.
+
+En el contexto de este trabajo, se emplea una \textbf{versión discretizada del algoritmo ABC}, adaptada al problema de recableo de grafos. Cada solución representa un subconjunto de aristas activas y, por tanto, cada operación de mutación o actualización equivale a modificar la estructura de la red sobre la cual se entrena la GCN base. La función de aptitud está determinada por la precisión obtenida al evaluar la GCN en el conjunto de prueba, de modo que la dinámica del ABC guíe la búsqueda hacia configuraciones estructurales que maximicen el desempeño del modelo.
+
+La discretización incorpora mecanismos específicos para asegurar que las nuevas soluciones generadas sean grafos válidos y que las operaciones de búsqueda local (en abejas empleadas y observadoras) se traduzcan en cambios interpretables a nivel topológico. Por su parte, las abejas exploradoras permiten reinicializar soluciones estancadas, mejorando la capacidad del algoritmo para recorrer regiones diversas del espacio de búsqueda.
+
+
+
+
+\begin{algorithm}[H]
+\caption{Optimización de aristas mediante Artificial Bee Colony (ABC) para recableo en GCN}
+\small
+\begin{algorithmic}[1]
+
+\State \textbf{Inicio}
+
+\State Cargar dataset (Cora, Citeseer, Pubmed)
+\State data $\gets$ Obtener el grafo base
+\State Definir modelo GCN de dos capas y optimizador Adam
+
+\State \textbf{Función de aptitud:}
+\State Dada una solución (conjunto de aristas), construir el grafo, entrenar la GCN y devolver la precisión en prueba
+
+\State \textbf{Inicialización:}
+\State Generar poblaciones iniciales de fuentes de alimento $\{x_1, x_2, \ldots, x_n\}$
+\State Evaluar aptitud $f(x_i)$ de cada fuente
+\State Definir solución global $g$ como la mejor fuente inicial
+
+% ================== FASE 1 =====================
+\State \textbf{Fase 1: Abejas empleadas}
+\For{cada abeja empleada $i$}
+    \State Generar vecina $v_i$ mediante mutación sobre $x_i$
+    \State Evaluar $f(v_i)$
+    \If{$f(v_i) > f(x_i)$}
+        \State $x_i \gets v_i$ \Comment{Reemplazo}
+    \EndIf
+\EndFor
+
+% ================== FASE 2 =====================
+\State \textbf{Fase 2: Abejas observadoras}
+\State Calcular probabilidades de selección $p_i$ a partir de $f(x_i)$
+\For{cada abeja observadora}
+    \State Seleccionar una fuente $x_k$ mediante ruleta
+    \State Generar vecina $v_k$ mediante mutación
+    \State Evaluar $f(v_k)$
+    \If{$f(v_k) > f(x_k)$}
+        \State $x_k \gets v_k$
+    \EndIf
+\EndFor
+
+% ================== FASE 3 =====================
+\State \textbf{Fase 3: Abejas exploradoras}
+\For{cada abeja $i$}
+    \If{la fuente $x_i$ no mejora tras un límite de intentos}
+        \State Reiniciar $x_i$ aleatoriamente
+        \State Evaluar su aptitud
+    \EndIf
+\EndFor
+
+\State \textbf{Actualizar mejor solución global:}
+\For{cada fuente $x_i$}
+    \If{$f(x_i) > f(g)$}
+        \State $g \gets x_i$
+    \EndIf
+\EndFor
+
+\State \textbf{Salida:} solución global $g$ y su precisión asociada
+
+\State \textbf{Fin}
+
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Evolución Diferencial}
+
+Además de los tres algoritmos de inteligencia de enjambre utilizados para el recableo de grafos, se empleó una técnica de \textbf{Evolución Diferencial} (DE) con el propósito de ajustar los hiperparámetros asociados a cada uno de ellos. La Evolución Diferencial es un método evolutivo basado en poblaciones que destaca por su simplicidad conceptual y su eficiencia para optimizar funciones no convexas y potencialmente ruidosas. En particular, su mecanismo basado en diferencias vectoriales permite explorar el espacio de parámetros de manera efectiva sin requerir gradientes.
+
+En este trabajo se utilizó DE para optimizar los hiperparámetros clave de PSO, ABC y ACS, evaluando su desempeño específicamente en el conjunto de datos \textit{Pubmed}, el cual presentó la mayor complejidad estructural entre los tres datasets empleados. Con el fin de evitar sesgos metodológicos, se mantuvo fija la arquitectura de la GCN base y su configuración de entrenamiento en todos los experimentos, siguiendo las recomendaciones de \cite{tori2024} respecto a evitar resultados inflados derivados de un afinamiento excesivo del modelo neuronal, como se ha señalado en críticas a trabajos previos como \cite{Topping2021}.
+
+La implementación de Evolución Diferencial utilizada corresponde a la disponible en la biblioteca \texttt{scikit-learn}, lo que permitió definir espacios de búsqueda acotados para cada hiperparámetro y evaluar sistemáticamente el impacto de diferentes configuraciones sobre la precisión final obtenida por la GCN. Los parámetros óptimos resultantes para cada algoritmo se presentan en la sección de resultados.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Categoría de Parámetro} & \textbf{Nombre} & \textbf{Valor} \\
+\hline
+\multirow{2}{*}{Arquitectura del GCN} 
+    & Número de capas ocultas & 1 \\
+    & Tamaño de la capa oculta & 16 \\
+\hline
+\multirow{3}{*}{Entrenamiento}         
+    & Optimizador & Adam \\
+    & Tasa de aprendizaje (Learning Rate) & 0.01 \\
+    & Weight Decay & $5\times 10^{-4}$ \\
+\hline
+\end{tabular}
+\caption{Parámetros utilizados para la arquitectura y el entrenamiento de la GCN.}
+\label{tab:gcn_training_params}
+\end{table}
+
+
+Adicionalmente hemos aplicado una técnica de evolución diferencial por medio de la implementación que ofrece Scikit-learn, esto con el fin de obtener los mejores parámetros para cada uno de los métodos utilizados en nuestros 3 datasets, en la sección de resultados compartimos cada uno de ellos.
+Hemos adicionalmente hecho un análisis de complejidad de los métodos propuestos:
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{|l|p{5.5cm}|}
+        \hline
+        \textbf{Algoritmo} & \textbf{Complejidad computacional estimada} \\
+        \hline
+        PSO & $O(n \cdot d \cdot T)$ \\
+        \hline
+        ABC & $O(n \cdot d \cdot T)$ \\
+        \hline
+        ACS & $O(n^2 \cdot T)$ \\
+        \hline
+    \end{tabular}
+    \caption{Comparación de la complejidad entre algoritmos de inteligencia de enjambre. $n$: agentes, $d$: dimensión de la solución, $T$: iteraciones.}
+    \label{tab:comparacion_algoritmos}
+\end{table}
+\chapter{Resultados}
+\label{cap3}
+
+En este capítulo se presentan los resultados experimentales obtenidos a partir de la aplicación de los algoritmos de inteligencia de enjambre (PSO, ABC y ACS) al problema de recableo estructural en redes empleadas como entrada de una GCN de dos capas. El objetivo central del análisis es evaluar si las reconfiguraciones topológicas propuestas por cada método son capaces de mejorar el desempeño del modelo sin recurrir a la afinación de hiperparámetros de la arquitectura neuronal, en concordancia con las consideraciones metodológicas discutidas en capítulos previos.
+
+Los experimentos se realizaron sobre los tres conjuntos de datos clásicos del aprendizaje geométrico: \textit{Cora}, \textit{Citeseer} y \textit{Pubmed}. Para cada técnica se ejecutaron treinta corridas independientes con el fin de estimar media y desviación estándar de la exactitud después del recableo. Adicionalmente, se empleó Evolución Diferencial para optimizar los hiperparámetros de cada metaheurística y se llevó a cabo un barrido sistemático (\textit{hyperparameter sweep}) sobre la GCN base con el propósito de validar que las mejoras no dependen de configuraciones particulares del modelo.
+
+Finalmente, con el fin de comprender los efectos geométricos del recableo sobre la representación latente aprendida por la GCN, se analizaron los \textit{embeddings} de nodo antes y después de la intervención utilizando técnicas de reducción de dimensionalidad mediante UMAP. Estas visualizaciones permiten evaluar de manera cualitativa la separación inter-clase, la cohesión intra-clase y la mitigación de fenómenos como \textit{over-squashing} y \textit{over-smoothing}.
+
+A continuación, se reportan los hiperparámetros óptimos encontrados, las métricas de precisión comparadas entre métodos y datasets, los resultados del barrido de hiperparámetros y las visualizaciones de los \textit{embeddings} resultantes.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{llc}
+        \toprule
+        \textbf{Algoritmo} & \textbf{Hiperparámetro} & \textbf{Valor} \\
+        \midrule
+        
+        \multirow{2}{*}{ABC} 
+            & Número de abejas ($n_{\text{abejas}}$) & 23 \\
+            & Tasa de mutación ($\mu$)               & 0.261 \\
+        \midrule
+        
+        \multirow{4}{*}{PSO} 
+            & Número de partículas ($n_{\text{p}}$) & 28 \\
+            & Inercia ($\omega$)                   & 0.806 \\
+            & Coeficiente cognitivo ($c_{1}$)      & 0.574 \\
+            & Coeficiente social ($c_{2}$)         & 2.516 \\
+        \midrule
+        
+        \multirow{5}{*}{ACO} 
+            & Número de hormigas ($n_{\text{h}}$)  & 28 \\
+            & Iteraciones ($T$)                    & 35 \\
+            & Importancia de la feromona ($\alpha$)& 1.967 \\
+            & Importancia heurística ($\beta$)     & 0.920 \\
+            & Tasa de evaporación ($\rho$)         & 0.358 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Hiperparámetros óptimos encontrados para cada algoritmo de optimización basada en enjambre sobre el dataset Cora.}
+    \label{tab:hiperparametros_optimos}
+\end{table}
+
+
+Como se observa en la Tabla~\ref{tab:hiperparametros_optimos}, los valores óptimos obtenidos mediante Evolución Diferencial muestran patrones diferenciados entre los tres algoritmos de enjambre. En el caso de ABC, la búsqueda favoreció configuraciones con un número moderado de abejas y una tasa de mutación relativamente baja, lo que indica que el método tiende a beneficiarse de una exploración controlada y de una explotación más estable de las soluciones.
+
+Para PSO, los valores seleccionados para la inercia ($\omega = 0.806$) y para los coeficientes cognitivo y social ($c_1 = 0.574$, $c_2 = 2.516$) sugieren que el algoritmo se comporta de manera más efectiva cuando la influencia social domina sobre la exploración individual, lo cual es consistente con su dinámica en espacios combinatorios discretizados.
+
+Finalmente, los parámetros óptimos para ACS presentan un balance significativo entre la importancia de las feromonas ($\alpha = 1.967$) y la heurística ($\beta = 0.920$), así como una tasa de evaporación moderada ($\rho = 0.358$). Este conjunto refleja que el algoritmo opera mejor cuando las hormigas combinan información acumulada con un componente heurístico que evita la saturación prematura de las trayectorias.
+
+En conjunto, los hiperparámetros obtenidos respaldan la idea de que cada algoritmo explora el espacio de soluciones mediante estrategias cualitativamente distintas, lo cual se reflejará posteriormente en las diferencias observadas en el desempeño sobre los datasets evaluados.
+
+\section{Accuracy después del recableado}
+
+La Tabla~\ref{tab:comparison_std} resume la exactitud promedio y la desviación estándar obtenidas tras aplicar cada uno de los métodos de recableo propuestos. Para cada combinación método–dataset se realizaron treinta ejecuciones independientes con el fin de obtener una estimación robusta del desempeño.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Método} & \textbf{Cora (\%)} & \textbf{Citeseer (\%)} & \textbf{Pubmed (\%)} \\
+\midrule
+None     & 59.112 $\pm$ 1.245 & 58.237 $\pm$ 1.331 & 42.335 $\pm$ 1.312 \\
+\textit{PSO} & 78.562 $\pm$ 1.320 & 68.867 $\pm$ 0.798 & 78.774 $\pm$ 0.191 \\
+\textit{ABC} & 79.509 $\pm$ 2.517 & 68.551 $\pm$ 0.285 & 79.511 $\pm$ 2.303 \\
+\textit{ACS} & 80.771 $\pm$ 1.208 & 69.894 $\pm$ 0.190 & 78.886 $\pm$ 0.294 \\
+\bottomrule
+\end{tabular}
+\caption{Exactitud promedio y desviación estándar obtenidas tras recableo en 30 ejecuciones independientes para cada método y dataset.}
+\label{tab:comparison_std}
+\end{table}
+
+Como puede observarse en la Tabla~\ref{tab:comparison_std}, los tres algoritmos de enjambre logran incrementos sustanciales en el desempeño respecto al grafo original. En particular, ACS obtiene la mayor precisión promedio en dos de los tres datasets, seguido muy de cerca por ABC y PSO. Este comportamiento es consistente con el hecho de que todos estos métodos exploran un número significativamente mayor de configuraciones estructurales que aquellas inducidas por heurísticas locales tradicionales, lo que les permite identificar grafos recableados que reducen fenómenos como \textit{over-squashing} y \textit{over-smoothing}.
+
+Es importante destacar que estas mejoras se obtienen **sin necesidad de realizar un barrido exhaustivo de hiperparámetros sobre la arquitectura de la GCN**, lo cual es relevante a la luz de las observaciones de \cite{tori2024}, quienes argumentan que algunos métodos de recableo reportan mejoras derivadas principalmente del ajuste del modelo neuronal y no de la reconfiguración estructural en sí.
+
+Con el fin de contrastar esta afirmación, se llevó a cabo un experimento adicional en el cual se evaluó la sensibilidad de la GCN base respecto a un conjunto amplio de hiperparámetros. La Tabla~\ref{tab:rango_hiperparametros} muestra el rango considerado para cada uno de ellos.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{lc}
+        \toprule
+        \textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+        \midrule
+        Tamaño de capa oculta ($h$)          & $\{16,\,32,\,64\}$ \\
+        Tasa de aprendizaje ($\eta$)          & $\{0.001,\,0.01,\,0.05\}$ \\
+        Decaimiento de pesos ($\lambda$)       & $\{0,\,5\times10^{-4},\,10^{-3}\}$ \\
+        Número de capas ($L$)                  & $\{2,\,3,\,4\}$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Rango de valores considerados durante el barrido de hiperparámetros para evaluar la robustez de la GCN base.}
+    \label{tab:rango_hiperparametros}
+\end{table}
+Como se aprecia en la Tabla~\ref{tab:rango_hiperparametros}, el barrido de hiperparámetros explora un rango amplio de configuraciones que incluyen variaciones en la capacidad del modelo (tamaño de capa oculta), profundidad (número de capas), tasa de aprendizaje y regularización mediante decaimiento de pesos. Estos parámetros representan los ajustes más influyentes en el comportamiento de una GCN estándar, por lo que constituyen una base adecuada para evaluar la sensibilidad del modelo a la configuración arquitectónica.
+
+Los resultados derivados de esta exploración, visualizados posteriormente en la Figura~\ref{fig:violin_plot}, muestran que incluso bajo combinaciones favorables de hiperparámetros, la GCN base no alcanza los niveles de precisión obtenidos mediante los métodos de recableo. En particular, la dispersión observada en las gráficas de violín indica que, si bien existen configuraciones con un desempeño ligeramente superior al promedio, ninguna de ellas se aproxima al rango alcanzado tras aplicar PSO, ABC o ACS. Esto sugiere que el comportamiento mejorado no es atribuible a un ajuste fino del modelo neuronal, sino a la reconfiguración estructural del grafo.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{violin_plot.png}
+    \caption{Distribución de la exactitud de la GCN base obtenida a partir del barrido de hiperparámetros descrito en la Tabla~\ref{tab:rango_hiperparametros}.}
+    \label{fig:violin_plot}
+\end{figure}
+
+
+En síntesis, los resultados asociados a la Tabla~\ref{tab:rango_hiperparametros} permiten concluir que el desempeño de la GCN permanece limitado aun bajo variaciones sustanciales en sus hiperparámetros principales. La ganancia obtenida mediante los algoritmos de recableo se explica, por tanto, por modificaciones topológicas que favorecen una propagación más eficiente de la información y reducen fenómenos como \textit{over-smoothing} y \textit{over-squashing}, más que por una mejora arquitectónica del modelo.
+
+\section{Embeddings de nodo y reducción de dimensiones}
+
+Con el objetivo de complementar los resultados cuantitativos presentados en las Tablas~\ref{tab:comparison_std} y~\ref{tab:rango_hiperparametros}, se llevó a cabo un análisis geométrico de los \textit{embeddings} producidos por la GCN base y por las variantes recableadas mediante los métodos ABC, ACS y PSO. Este análisis permite evaluar, de manera visual y estructural, cómo la modificación de la topología del grafo afecta la organización interna del espacio latente aprendido por la red.
+
+Recordemos que los \textit{embeddings} de nodo corresponden a la matriz $H$ descrita en la Sección~\ref{sec:gcn_def}, la cual representa la activación producida por la última capa convolucional. Dicho espacio latente captura relaciones semánticas entre nodos que dependen simultáneamente de sus características y de la estructura del grafo. Por esta razón, cualquier alteración en dicha estructura —como el recableo provocado por nuestros algoritmos— puede manifestarse en cambios profundos en la geometría de los \textit{embeddings}. 
+
+Para visualizar esta geometría se empleó la técnica UMAP~\cite{mcinnes2018umap}, ampliamente utilizada para preservar tanto estructura local como global en espacios de alta dimensión. Se generaron proyecciones bidimensionales y tridimensionales para cada uno de los métodos; estas visualizaciones se muestran en las Figuras~\ref{fig:ABC_2D}–\ref{fig:PSO_3D}.
+
+\subsection*{Resultados para el método ABC}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{ABC_2D.png}
+    \caption{Proyección UMAP 2D de los \textit{embeddings} generados mediante el recableo con el algoritmo ABC.}
+    \label{fig:ABC_2D}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{ABC_3D.png}
+    \caption{Proyección UMAP 3D de los \textit{embeddings} generados mediante el recableo con el algoritmo ABC.}
+    \label{fig:ABC_3D}
+\end{figure}
+
+Las Figuras~\ref{fig:ABC_2D} y~\ref{fig:ABC_3D} muestran que el recableo mediante ABC provoca una clara separación entre clases, transformando la nube inicial del grafo original en brazos bien definidos. La distancia entre centroides inter-clase aumenta significativamente, mientras que la varianza interna de cada grupo disminuye. Esta reorganización geométrica coincide con el aumento de exactitud reportado previamente para ABC (Tabla~\ref{tab:comparison_std}), pasando de 59.1\% a 79.5\%.
+
+\subsection*{Resultados para el método ACS}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{ACS_2D.png}
+    \caption{Proyección UMAP 2D de los \textit{embeddings} generados mediante el recableo con el algoritmo ACS.}
+    \label{fig:ACS_2D}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{ACS_3D.png}
+    \caption{Proyección UMAP 3D de los \textit{embeddings} generados mediante el recableo con el algoritmo ACS.}
+    \label{fig:ACS_3D}
+\end{figure}
+
+Las Figuras~\ref{fig:ACS_2D} y~\ref{fig:ACS_3D} presentan el comportamiento del método ACS. En este caso los clústeres resultan todavía más definidos y con separación más marcada que en ABC, lo que es coherente con su mayor exactitud (80.8\%). Se observan islotes prácticamente disjuntos, indicando que el método elimina aristas que inducían mezcla de señales entre comunidades, mitigando fenómenos como \textit{over-smoothing} y \textit{over-squashing}. Esto respalda la hipótesis de que ACS realiza un recableo altamente beneficioso para la propagación dirigida de información en GCNs.
+
+\subsection*{Resultados para el método PSO}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{PSO_2D.png}
+    \caption{Proyección UMAP 2D de los \textit{embeddings} generados mediante el recableo con el algoritmo PSO.}
+    \label{fig:PSO_2D}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{PSO_3D.png}
+    \caption{Proyección UMAP 3D de los \textit{embeddings} generados mediante el recableo con el algoritmo PSO.}
+    \label{fig:PSO_3D}
+\end{figure}
+
+Las Figuras~\ref{fig:PSO_2D} y~\ref{fig:PSO_3D} evidencian una separación intermedia entre las obtenidas por ACS y ABC. PSO logra crear clústeres visibles y relativamente compactos, aunque con fronteras algo más difusas. El rango espacial de la nube casi se duplica tras el recableo, lo que indica que PSO tiende a conservar aristas intra-comunidad y reducir enlaces puente, con una estrategia menos agresiva que ACS pero computacionalmente más eficiente. Su exactitud (78.6\%, ver Tabla~\ref{tab:comparison_std}) coincide con estos patrones geométricos.
+\subsection*{Discusión}
+
+En conjunto, las proyecciones UMAP permiten visualizar de manera clara cómo cada algoritmo transforma la estructura latente aprendida por la GCN. Los tres métodos presentan mejoras sustanciales en separabilidad inter-clase y compactación intra-clase en comparación con la GCN sin recableo.
+
+Este análisis geométrico complementa los resultados numéricos previos y refuerza la conclusión de que las ganancias en desempeño provienen directamente de la reconfiguración topológica del grafo y no del ajuste fino de los hiperparámetros del modelo neuronal. En particular, ACS muestra la mayor capacidad para generar representaciones bien estructuradas, mientras que PSO mantiene un equilibrio notable entre calidad del recableo y costo computacional.
+
+No obstante, los resultados también permiten identificar varias limitaciones inherentes a la metodología adoptada, las cuales abren oportunidades importantes para trabajo futuro:
+
+\begin{itemize}
+    \item \textbf{Costo computacional del recableo iterativo.}  
+    Aunque la GCN base no se reentrena desde cero en cada evaluación, la necesidad de calcular la exactitud en múltiples configuraciones de grafo implica un gasto computacional significativo, especialmente en ACS cuyo costo escala cuadráticamente con el número de agentes. Esto restringe la aplicabilidad a grafos de mayor tamaño o a arquitecturas GNN más profundas.
+
+    \item \textbf{Fijación de la arquitectura de la GCN.}  
+    Con el fin de aislar el efecto del recableo, la arquitectura de la GCN se mantuvo fija y deliberadamente sencilla. Esto implica que las mejoras observadas podrían interactuar de manera distinta en modelos más potentes como GAT, GraphSAGE o GCNs multi-hop, por lo que los resultados no se generalizan automáticamente a dichas variantes.
+
+    \item \textbf{Espacio de búsqueda limitado.}  
+    El recableo se modeló como una selección binaria de aristas preservadas o eliminadas. Aunque eficaz, esta representación ignora otras transformaciones posibles como reponderación de aristas, adición de nuevas conexiones o recableo dirigido por métricas espectrales, lo que podría restringir el alcance de las configuraciones óptimas.
+
+    \item \textbf{Evaluación basada exclusivamente en exactitud.}  
+    La función objetivo se definió únicamente como la precisión sobre el conjunto de prueba. Esto puede favorecer configuraciones que mejoran el desempeño predictivo pero no necesariamente la interpretabilidad, la estabilidad estructural del grafo o la robustez frente a perturbaciones adversarias.
+
+    \item \textbf{Ausencia de recableo dinámico durante el entrenamiento.}  
+    Todos los métodos operan en un esquema estático: primero se recablea el grafo y posteriormente se entrena la GCN. No se exploran estrategias de recableo iterativo o adaptativo acopladas al proceso de aprendizaje, las cuales podrían ofrecer mejoras adicionales y un uso más eficiente de los recursos computacionales.
+\end{itemize}
+
+Por lo tanto, los resultados experimentales confirman la eficacia de las técnicas de inteligencia de enjambre para mejorar la calidad de las representaciones generadas por GCNs mediante modificaciones en la estructura del grafo. Sin embargo, las limitaciones identificadas muestran que existe un amplio margen para extender este enfoque hacia variantes más escalables, dinámicas y generalizables.
+
+
+
+\chapter{Conclusiones}
+\label{cap4}
+En este trabajo se investigó el uso de algoritmos de inteligencia de enjambre para guiar procesos de recableo en grafos utilizados como entrada de una Red de Grafos Convolucional (GCN), con el objetivo de mejorar su desempeño en tareas de clasificación de nodos. A diferencia de enfoques basados exclusivamente en geometría discreta o curvaturas de Ricci, el método propuesto formula el recableo como un problema de optimización combinatoria, donde cada configuración del grafo se evalúa directamente en función de la precisión alcanzada por el modelo.
+\section{Conclusiones}
+Los resultados experimentales obtenidos en los conjuntos de datos \textit{Cora}, \textit{Citeseer} y \textit{Pubmed} muestran mejoras sustanciales con respecto al modelo base sin recableo. En particular, los algoritmos PSO, ABC y ACS lograron incrementos significativos en la exactitud del modelo, alcanzando valores superiores al 78\% en el caso de \textit{Cora}, comparados con el 59\% obtenido por la GCN sin modificaciones estructurales. Estos resultados confirman que las técnicas de enjambre son capaces de explorar configuraciones del grafo que favorecen la propagación de información y reducen los efectos de \textit{over-squashing} y \textit{over-smoothing}.
+
+Asimismo, las visualizaciones de embeddings generados por la GCN antes y después del recableo evidencian una reorganización geométrica notable: las clases se vuelven más separables y se observa una reducción del solapamiento entre comunidades. Este comportamiento coincide con las mejoras de desempeño observadas en los experimentos cuantitativos y refuerza la interpretación estructural de los algoritmos como mecanismos capaces de eliminar aristas que inducen ruido, puentes innecesarios o rutas que comprimen información.
+
+En términos de eficiencia computacional, el análisis realizado mostró que ACS es el método con mejor desempeño promedio, aunque presenta la mayor complejidad debido a su naturaleza cuadrática. Por su parte, PSO y ABC ofrecen un equilibrio más favorable entre precisión y costo computacional, lo que los convierte en alternativas atractivas para grafos de mayor escala o escenarios donde el entrenamiento debe realizarse con recursos limitados.
+
+No obstante, este proyecto presenta algunas limitaciones. La validación se realizó en datasets relativamente pequeños y ampliamente estudiados, por lo que sería deseable evaluar el enfoque en grafos de mayor tamaño o en aplicaciones del mundo real. Asimismo, no se exploraron arquitecturas más avanzadas de GNNs, como modelos con atención, \textit{GraphSAGE} o técnicas de agregación adaptativa. Finalmente, el recableo se estudió únicamente como un proceso previo al entrenamiento, sin considerar esquemas dinámicos o adaptativos.
+
+\section{Trabajo a futuro}
+Como líneas de trabajo futuro se proponen:
+\begin{itemize}
+    \item Extender los experimentos a arquitecturas modernas de GNN, incluyendo modelos basados en atención y representaciones multi-escala.
+    \item Evaluar el recableo dinámico durante el entrenamiento mediante enfoques híbridos con aprendizaje por refuerzo.
+    \item Analizar el impacto del recableo en tareas adicionales, tales como predicción de enlaces, detección de anomalías y clasificación de grafos completos.
+    \item Implementar versiones paralelas o distribuidas de los algoritmos de enjambre para mejorar su escalabilidad.
+\end{itemize}
+
+En conjunto, los resultados de este proyecto demuestran que los algoritmos de inteligencia de enjambre constituyen una alternativa robusta, flexible y eficaz para mejorar la capacidad de representación de las GCNs mediante recableo estructural, aportando un enfoque adaptable a distintos contextos dentro del aprendizaje automático geométrico.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% La bibliografía debe aparecer de manera homologada
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{9}
+
+\bibitem{Saucan2021} 
+Saucan, E., Samal, A., and Jost, J. (2021). 
+\textit{A simple differential geometry for complex networks}. Network Science, 8, 201734.
+
+\bibitem{Samal2018} 
+Samal, A., Sreejith, R., Gu, J., Liu, S., and Saucan, E. (2018). 
+\textit{Comparative analysis of two discretizations of Ricci curvature for complex networks}. Scientific Reports, 8(1), 8650.
+
+\bibitem{Topping2021} 
+Topping, J., Bober, J., Monod, A., and Saucan, E. (2021). 
+\textit{Understanding over-squashing in graph neural networks}. arXiv preprint arXiv:2106.05793.
+
+\bibitem{mcinnes2018umap} 
+Leland McInnes, John Healy, and James Melville. 
+\textit{UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction}, 
+Proceedings of the 2018 Conference on Neural Information Processing Systems (NeurIPS 2018), 2018.
+
+
+\bibitem{Bober2022} 
+Bober, J., Monod, A., Saucan, E., and Webster, K. N. (2022). 
+\textit{Rewiring networks for graph neural network training using discrete geometry}. arXiv preprint arXiv:2207.08026v1.
+\bibitem{zhang2016} Zhang, Y., Chen, G., and Wang, Y. (2016). \textit{Resilience Analysis of Complex Networks}. IEEE Transactions on Circuits and Systems II: Express Briefs, 63(10), 938-942.
+\bibitem{Maxime2025graph}
+Maxime Labonne,
+\emph{Graph Convolutional Networks: Introduction to GNNs},
+Towards Data Science, 2025. 
+Available at: \url{https://towardsdatascience.com/graph-convolutional-networks-introduction-to-gnns-24b3f60d6c95}.
+Accessed on: 2025-01-17.
+
+\bibitem{rosser2025}
+J. Rosser, "Demystifying GCNs: A Step-by-Step Guide to Building a Graph Convolutional Network Layer in PyTorch," 2025.
+
+\bibitem{kipf2017semi}
+T. N. Kipf and M. Welling, ``Semi-Supervised Classification with Graph Convolutional Networks,'' in \textit{International Conference on Learning Representations (ICLR)}, 2017.
+\bibitem{tori2024}
+Floriano Tori, Vincent Holst, and Vincent Ginis.
+\newblock \emph{The Effectiveness of Curvature-Based Rewiring and the Role of Hyperparameters in GNNs Revisited}.
+\newblock arXiv preprint arXiv:2407.09381, 2024.
+\newblock \url{https://doi.org/10.48550/arXiv.2407.09381}.
+
+
+
+\end{thebibliography}
+
+
+
+
+
+
+\end{document}
+
+
