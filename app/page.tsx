@@ -1,5 +1,5 @@
 import siteMetadata from '@/data/siteMetadata'
-import Image from 'next/image'
+import Image from '@/components/Image'
 import CursorGlow from '@/components/CursorGlow'
 import type { CSSProperties } from 'react'
 import {
