@@ -5,11 +5,11 @@ export const dynamic = 'force-static'
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-    },
-    sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
+    rules: [
+      { userAgent: '*', disallow: '/' },
+      { userAgent: 'ia_archiver', disallow: '/' },
+      { userAgent: 'archive.org_bot', disallow: '/' },
+    ],
     host: siteMetadata.siteUrl,
   }
 }

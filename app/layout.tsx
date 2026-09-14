@@ -41,13 +41,15 @@ export const metadata: Metadata = {
     },
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
+    nocache: true,
     googleBot: {
-      index: true,
-      follow: true,
+      index: false,
+      follow: false,
+      noimageindex: true,
       'max-video-preview': -1,
-      'max-image-preview': 'large',
+      'max-image-preview': 'none',
       'max-snippet': -1,
     },
   },
@@ -91,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         color="#5bbad5"
       />
       <meta name="msapplication-TileColor" content="#000000" />
+      <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />

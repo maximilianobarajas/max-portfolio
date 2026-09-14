@@ -1,9 +1,9 @@
 const siteMetadata = {
-  title: 'Maximiliano Barajas - Research Portfolio',
-  author: 'Maximiliano Barajas',
+  title: 'Max Barajas - Research Portfolio',
+  author: 'Max Barajas',
   headerTitle: 'MaxBarajas',
   description:
-    'Aspiring to leverage expertise in Mathematics and Computer Science for scientific computing, machine learning, and advanced data modeling.',
+    'Applied mathematics student and AI analyst. Research in optimization, networks, and machine learning.',
   language: 'en-us',
   theme: 'dark', // System, dark or light
   siteUrl: 'https://maxbarajas.com',
@@ -16,7 +16,7 @@ const siteMetadata = {
   linkedin: 'https://www.linkedin.com/in/max-barajas',
   locale: 'en-US',
   analytics: {
-    googleAnalyticsId: '', 
+    googleAnalyticsId: '',
   },
   // 👇 AGREGAR ESTO ES VITAL PARA QUE NO TRUENE 👇
   newsletter: {

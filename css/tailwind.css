@@ -17,37 +17,58 @@
   /* Puedes añadir más variables aquí si lo necesitas */
 }
 
-/* Estilos Globales (La parte visual de Tania) */
+/* Estilos Globales, tonos neutros apagados en modo claro y oscuro */
 @layer base {
   body {
-    /* Fondo Galaxia Fijo */
-    background-color: #0f172a; /* Slate 900 */
-    background-image: linear-gradient(to bottom right, #0f172a, #1e1b4b, #312e81);
+    background-color: #f8fafc; /* Slate 50 */
+    background-image: linear-gradient(to bottom right, #ffffff, #f1f5f9, #ffffff);
     background-attachment: fixed;
-    color: #e2e8f0; /* Slate 200 */
+    color: #1e293b; /* Slate 800 */
     font-family: var(--font-sans);
   }
 
-  /* Encabezados Blancos */
+  .dark body {
+    background-color: #0f172a; /* Slate 900 */
+    background-image: linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a);
+    color: #e2e8f0; /* Slate 200 */
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    color: #f8fafc; /* Slate 50 */
+    color: #0f172a; /* Slate 900 */
     font-weight: 800;
   }
 
-  /* Enlaces color Cian Neón */
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: #f8fafc; /* Slate 50 */
+  }
+
+  /* Enlaces en tono apagado */
   a {
-    color: #38bdf8; /* Sky 400 */
+    color: #475569; /* Slate 600 */
     text-decoration: none;
     transition: color 0.2s;
   }
 
   a:hover {
-    color: #7dd3fc; /* Sky 300 */
+    color: #1e293b; /* Slate 800 */
+  }
+
+  .dark a {
+    color: #94a3b8; /* Slate 400 */
+  }
+
+  .dark a:hover {
+    color: #cbd5e1; /* Slate 300 */
   }
 }
 
@@ -72,5 +93,18 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .terminal-cursor::after {
+    content: '▌';
+    display: inline-block;
+    margin-left: 2px;
+    animation: term-blink 1s steps(1) infinite;
+  }
+
+  @keyframes term-blink {
+    50% {
+      opacity: 0;
+    }
   }
 }
